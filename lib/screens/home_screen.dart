@@ -4,29 +4,57 @@ class HomeScreen extends StatelessWidget {
   static const routeName = '/home-screen';
   @override
   Widget build(BuildContext context) {
+    final deviceSize = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(75,99,169, 1),
-        appBar: AppBar(title: Text('Login Screen'),backgroundColor: Color.fromRGBO(75,99,169, 1),),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
+        children: <Widget>[
+          Container(
+            height: deviceSize * 0.3,
+            child: Image.asset(
+              'assets/book.jpg',
+              fit: BoxFit.contain,
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Text(
-                'Hey There User,\nYou Sucessfully logged in!!',
-                style: TextStyle(fontSize: 15),
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                height: 350,
+                width: double.infinity,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
+                    ),
+                  ),
+                  elevation: 10,
+                  child: Container(
+                    padding: EdgeInsets.only(
+                      top: 30,
+                      left: 30,
+                      bottom: 30,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Discover New',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(fontSize: 28),
+                        ),
+                        SizedBox(height: 5,),
+                        Text('Hunt new books before other bookworms do it..',style: TextStyle(fontSize:12,color: Colors.grey),)
+                      ],
+                    ),
+                  ),
+                ),
               ),
-              SizedBox(height: 10),
-              RaisedButton.icon(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: Icon(Icons.arrow_back,color: Colors.white,),
-                label: Text('Logout',style: TextStyle(color:Colors.white),),
-                color: Colors.blueGrey,
-                shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(10)),
-              )
             ],
           ),
-        ));
+        ],
+      ),
+    );
   }
 }
