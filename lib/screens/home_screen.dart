@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
             children: <Widget>[
               Container(
                 padding: EdgeInsets.only(left: 20),
-                height: 350,
+                height: 400,
                 width: double.infinity,
                 child: HomeCard(),
               ),

@@ -44,11 +44,36 @@ class HomeCard extends StatelessWidget {
               child: ListView.builder(
                 itemBuilder: (ctx, index) {
                   return Container(
-                      child: Column(
-                    children: <Widget>[
-                      Image.network(books[index].imageUrl),
-                    ],
-                  ));
+                    width: 110,
+                    margin: EdgeInsets.all(10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Image.network(
+                            books[index].imageUrl,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Text(
+                          books[index].author,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        Text(
+                          books[index].title,
+                          softWrap: true,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        )
+                      ],
+                    ),
+                  );
                 },
                 scrollDirection: Axis.horizontal,
                 itemCount: books.length,
