@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/books.dart';
+import '../screens/book_screen.dart';
 
 class HomeCard extends StatelessWidget {
   @override
@@ -46,32 +47,37 @@ class HomeCard extends StatelessWidget {
                   return Container(
                     width: 110,
                     margin: EdgeInsets.all(10),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: Image.network(
-                            books[index].imageUrl,
-                            fit: BoxFit.cover,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(BookScreen.routename,arguments: books[index]);
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            child: Image.network(
+                              books[index].imageUrl,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        Text(
-                          books[index].author,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
+                          Text(
+                            books[index].author,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
+                            ),
                           ),
-                        ),
-                        Text(
-                          books[index].title,
-                          softWrap: true,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                        )
-                      ],
+                          Text(
+                            books[index].title,
+                            softWrap: true,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },

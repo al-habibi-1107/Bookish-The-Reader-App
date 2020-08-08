@@ -5,6 +5,7 @@ import './screens/auth_screen.dart';
 import './models/users.dart';
 import './screens/home_screen.dart';
 import './models/books.dart';
+import './screens/book_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +28,8 @@ class MyApp extends StatelessWidget {
         home: HomeScreen(),
         routes: {
           HomeScreen.routeName: (ctx) => HomeScreen(),
+          BookScreen.routename: (ctx) => BookScreen(),
+
         },
       ),
     );
