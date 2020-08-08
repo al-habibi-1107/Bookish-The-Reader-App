@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Bookish',
-        home: HomeScreen(),
+        home: AuthScreen(),
         routes: {
           HomeScreen.routeName: (ctx) => HomeScreen(),
           BookScreen.routename: (ctx) => BookScreen(),

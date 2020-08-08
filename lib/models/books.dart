@@ -11,6 +11,8 @@ class Books with ChangeNotifier{
       rating: 4.34,
       imageUrl: 'https://images.gr-assets.com/books/1447303603m/2767052.jpg',
       reviews: 155254,
+      pages: 365,
+      language: 'English'
     ),
     Book(
       bookId: 3,
@@ -19,6 +21,8 @@ class Books with ChangeNotifier{
       rating: 4.44,
       imageUrl: 'https://images.gr-assets.com/books/1474154022m/3.jpg',
       reviews: 75867,
+      pages: 600,
+      language: 'English'
     ),
     Book(
       bookId: 41865,
@@ -27,6 +31,8 @@ class Books with ChangeNotifier{
       rating: 3.57,
       imageUrl: 'https://images.gr-assets.com/books/1361039443m/41865.jpg',
       reviews: 95009,
+      pages: 690,
+      language: 'English-US'
     )
   ];
 

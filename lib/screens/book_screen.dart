@@ -21,7 +21,7 @@ class BookScreen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(top: 40),
                 alignment: Alignment.topLeft,
-                height: device.height * 0.3,
+                height: device.height * 0.25,
                 child: IconButton(
                   icon: Icon(Icons.arrow_back_ios),
                   onPressed: () {
@@ -33,7 +33,7 @@ class BookScreen extends StatelessWidget {
                 margin: EdgeInsets.symmetric(
                   horizontal: 8,
                 ),
-                height: device.height * 0.7,
+                height: device.height * 0.75,
                 width: device.width,
                 child: Card(
                   shape: RoundedRectangleBorder(
@@ -43,21 +43,125 @@ class BookScreen extends StatelessWidget {
                   ),
                   color: Colors.white,
                   elevation: 10,
-                  child: Column(),
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(height: 150),
+                      Text(
+                        currentBook.author,
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 15,
+                        ),
+                      ),
+                      SizedBox(height: 3),
+                      Text(
+                        currentBook.title,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 23,
+                            fontFamily: 'PlayfairDisplay-Italic'),
+                        maxLines: 2,
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 20),
+                      Divider(
+                        indent: 30,
+                        endIndent: 30,
+                        thickness: 1.7,
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        'About Book',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Divider(
+                        thickness: 3,
+                        indent: 150,
+                        endIndent: 150,
+                        color: Colors.green,
+                      ),
+                      Container(
+                        height: 110,
+                        padding: EdgeInsets.all(10),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          borderOnForeground: true,
+                          elevation: 1,
+                          color: Color.fromRGBO(255, 255, 255, 0.85),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text(
+                                      'Rating',
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                    SizedBox(height: 5),
+                                    Text(
+                                      '${currentBook.rating}',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600),
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text('Pages',
+                                        style: TextStyle(color: Colors.grey)),
+                                    SizedBox(height: 5),
+                                    Text(
+                                      '${currentBook.pages.round()}',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600),
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text('Language',
+                                        style: TextStyle(color: Colors.grey)),
+                                    SizedBox(height: 5),
+                                    Text(
+                                      currentBook.language,
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600),
+                                    )
+                                  ],
+                                ),
+                              ]),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
           Container(
-            padding: EdgeInsets.only(top: 110),
+            padding: EdgeInsets.only(top: 90),
             alignment: Alignment.topCenter,
             child: Card(
               color: Colors.transparent,
               elevation: 40,
               child: ClipRRect(
-                child: Image.network(
-                  currentBook.imageUrl,
-                  scale: 0.62,
+                child: Hero(
+                  tag: currentBook.bookId,
+                  child: Image.network(
+                    currentBook.imageUrl,
+                    scale: 0.62,
+                  ),
                 ),
                 borderRadius: BorderRadius.circular(9),
               ),

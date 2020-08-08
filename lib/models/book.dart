@@ -7,6 +7,8 @@ class Book {
   final double rating;
   final double reviews;
   final String imageUrl;
+  final double pages;
+  final String language;
 
   Book(
       {@required this.bookId,
@@ -14,5 +16,7 @@ class Book {
       @required this.author,
       @required this.rating,
       @required this.reviews,
-      @required this.imageUrl});
+      @required this.imageUrl,
+      @required this.language,
+      @required this.pages});
 }
