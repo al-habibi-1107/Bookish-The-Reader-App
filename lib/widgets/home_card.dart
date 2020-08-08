@@ -61,7 +61,7 @@ class HomeCard extends StatelessWidget {
                             child: Hero(
                                 tag: books[index].bookId,
                                 child: FadeInImage(
-                                  placeholder: AssetImage('assets/book.jpg'),
+                                  placeholder: AssetImage('assets/book-placeholder.png'),
                                   image: NetworkImage(
                                     books[index].imageUrl,
                                   ),
