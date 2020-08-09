@@ -8,21 +8,21 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
- 
-
   @override
   Widget build(BuildContext context) {
-    
     final _deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      
+      resizeToAvoidBottomInset: false,
       body: Stack(children: [
         Column(
           children: <Widget>[
             Container(
-              child: Image.asset('assets/mountain1_bg.jpg',fit: BoxFit.cover,),
-                height: _deviceHeight * 0.40,
-                //color: Colors.blueAccent.withOpacity(0.7)),
+              child: Image.asset(
+                'assets/mountain1_bg.jpg',
+                fit: BoxFit.cover,
+              ),
+              height: _deviceHeight * 0.40,
+              //color: Colors.blueAccent.withOpacity(0.7)),
             ),
             Container(
               height: _deviceHeight * 0.60,
@@ -33,9 +33,7 @@ class _AuthScreenState extends State<AuthScreen> {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            AuthCard()
-          ],
+          children: <Widget>[AuthCard()],
         )
       ]),
     );
