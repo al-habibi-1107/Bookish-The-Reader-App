@@ -50,7 +50,8 @@ class HomeCard extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         Navigator.of(context).pushNamed(BookScreen.routename,
-                            arguments: books[index]);
+                            arguments: books[index],);
+                       
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -61,7 +62,8 @@ class HomeCard extends StatelessWidget {
                             child: Hero(
                                 tag: books[index].bookId,
                                 child: FadeInImage(
-                                  placeholder: AssetImage('assets/book-placeholder.png'),
+                                  placeholder:
+                                      AssetImage('assets/book-placeholder.png'),
                                   image: NetworkImage(
                                     books[index].imageUrl,
                                   ),

@@ -144,49 +144,50 @@ class BookScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.only(top: 15, left: 20),
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          'Description',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Colors.grey,
+                      Expanded(
+                        child: ListView(
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.only(top: 15, left: 20),
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                'Description',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              currentBook.desc,
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            padding: EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.green),
+                            margin: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 20),
+                            height: 50,
+                            width: double.infinity,
+                            child: Text(
+                              'Add to Cart for 10\$',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700),
+                            ),
                           ),
                         ),
                       ),
-                      ExpansionTile(
-                        children: <Widget>[
-                          Text(
-                            currentBook.desc,
-                          )
-                        ],
-                        title: Text(
-                          currentBook.desc,
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          padding: EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.green),
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 20),
-                          height: 50,
-                          width: double.infinity,
-                          child: Text(
-                            'Add to Cart for 10\$',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                      )
+                      SizedBox(height: 50)
                     ],
                   ),
                 ),
@@ -194,7 +195,9 @@ class BookScreen extends StatelessWidget {
             ],
           ),
           Container(
-            padding: EdgeInsets.only(top: 80),
+            // height: 300,
+
+            padding: EdgeInsets.only(top: 70),
             alignment: Alignment.topCenter,
             child: Card(
               color: Colors.transparent,
@@ -204,7 +207,7 @@ class BookScreen extends StatelessWidget {
                   tag: currentBook.bookId,
                   child: Image.network(
                     currentBook.imageUrl,
-                    scale: 0.62,
+                    scale: 5,
                   ),
                 ),
                 borderRadius: BorderRadius.circular(9),
