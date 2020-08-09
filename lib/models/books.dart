@@ -9,7 +9,8 @@ class Books with ChangeNotifier {
         author: 'Suzanne Collins',
         title: 'The Hunger Games',
         rating: 4.34,
-        imageUrl: 'https://images.gr-assets.com/books/1447303603m/2767052.jpg',
+        imageUrl:
+            'https://images-na.ssl-images-amazon.com/images/I/71WSzS6zvCL.jpg',
         reviews: 155254,
         pages: 365,
         language: 'English',
@@ -20,7 +21,8 @@ class Books with ChangeNotifier {
       author: 'J.K. Rowling',
       title: 'Harry Potter and the Philosopher\'s Stone',
       rating: 4.44,
-      imageUrl: 'https://images.gr-assets.com/books/1474154022m/3.jpg',
+      imageUrl:
+          'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1474154022l/3._SY475_.jpg',
       reviews: 75867,
       pages: 600,
       language: 'English',
@@ -32,7 +34,8 @@ class Books with ChangeNotifier {
       author: 'Stephenie Meyer',
       title: 'Twilight',
       rating: 3.57,
-      imageUrl: 'https://images.gr-assets.com/books/1361039443m/41865.jpg',
+      imageUrl:
+          'https://images-na.ssl-images-amazon.com/images/I/51CeJ+XZOBL.jpg',
       reviews: 95009,
       pages: 690,
       language: 'English-US',
