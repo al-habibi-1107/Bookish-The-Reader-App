@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Definition of a user , how a user looks like
 class User {
   final String username;
   final String email;

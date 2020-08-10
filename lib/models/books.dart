@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import './book.dart';
 
+// Change notifier enables provider package
+// to be available for the Books 
 class Books with ChangeNotifier {
   List<Book> _books = [
     Book(
@@ -45,6 +47,7 @@ class Books with ChangeNotifier {
     )
   ];
 
+  // a gatter to render the list of books 
   List<Book> get books {
     return _books;
   }

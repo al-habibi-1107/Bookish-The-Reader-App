@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 import '../models/book.dart';
 
 class BookCard extends StatelessWidget {
+  // currentBook is passed as parameter so that the card can access
+  // the book details of the book selected
+  // dialogue is a function that shows the alert box with book
+  // description , when clicked on 
   final Book currentBook;
   final Function dialogue;
   BookCard(this.currentBook,this.dialogue);
 
   @override
   Widget build(BuildContext context) {
+    // Card with rounded borders with info 
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -57,6 +62,8 @@ class BookCard extends StatelessWidget {
             endIndent: 150,
             color: Colors.green,
           ),
+          // Container having the info on Rating ,
+          // no of pages and language
           Container(
             height: 110,
             padding: EdgeInsets.all(10),
@@ -112,6 +119,8 @@ class BookCard extends StatelessWidget {
               ),
             ),
           ),
+          // The Description is a button/ Gesture detector that
+          // on a tap fires the Alert Dialog with full description
           Container(
             padding: EdgeInsets.only(top: 15, left: 20),
             alignment: Alignment.topLeft,

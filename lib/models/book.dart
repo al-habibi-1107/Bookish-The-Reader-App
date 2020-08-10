@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+// The model of a book , parameters a book must contain
 class Book {
   final double bookId;
   final String title;
