@@ -22,7 +22,8 @@ class Books with ChangeNotifier {
       title: 'Harry Potter and the Philosopher\'s Stone',
       rating: 4.44,
       imageUrl:
-          'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1474154022l/3._SY475_.jpg',
+          'https://media1.popsugar-assets.com/files/thumbor/-Q9R5WHoEUikdqZWJpl0OL6fo7g/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2013/02/07/3/301/3019466/a7c409363d6d6d9a_harrynew_custom-1fa12c2215710024d4fb570714431f00ca671dc1-s6-c10/i/Harry-Potter-Sorcerer-Stone-USA-15th-Anniversary-Edition.jpg',
+      //  'https://i.pinimg.com/originals/8f/8c/68/8f8c6821f2059607e85122c6a38cd11c.jpg',
       reviews: 75867,
       pages: 600,
       language: 'English',
