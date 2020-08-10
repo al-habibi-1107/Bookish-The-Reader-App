@@ -25,9 +25,16 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Bookish',
+        // Authorisation Screen - HomePage of the app
+        // email - admin@admin.com
+        // password - adminname
         home: AuthScreen(),
+        // routes has the route to all pages in the app for 
+        // easy navigation between them
         routes: {
+        // HomeScreen - Contains the List of All books 
           HomeScreen.routeName: (ctx) => HomeScreen(),
+        // BookScreen - Contains the Info on a Specific Book
           BookScreen.routename: (ctx) => BookScreen(),
 
         },

@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import './user.dart';
 
+// ChangeNotifier enables provider to be accessible
+
 class Users with ChangeNotifier {
   List<User> _users = [
     User(
@@ -20,6 +22,9 @@ class Users with ChangeNotifier {
   List<User> get users {
     return _users;
   }
+
+  // A function to Add a new user to the List of Users
+  // Gets called when SignUp is done
 
   bool addUser(String uname, String password, String email) {
     bool _isPresent = false;
@@ -44,6 +49,7 @@ class Users with ChangeNotifier {
     return true;
   }
 
+  // A function to login a user with valid credentials
   bool isAuth(String password, String email) {
     bool userPresent = false;
     _users.forEach((element) {

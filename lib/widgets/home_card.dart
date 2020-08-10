@@ -7,7 +7,9 @@ import '../screens/book_screen.dart';
 class HomeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // To get access of the List of books in the models/books.dart file
     final books = Provider.of<Books>(context).books;
+    // Card with rounded side borders
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -23,6 +25,8 @@ class HomeCard extends StatelessWidget {
           bottom: 30,
         ),
         child: Column(
+          // Column with  the Title and the books with image
+          // NOTE : all SizedBox are just to give spacing for better look
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
@@ -42,6 +46,9 @@ class HomeCard extends StatelessWidget {
               height: 10,
             ),
             Expanded(
+              // A list view for all the info on books with
+              // Gesture detector to enable clicking and 
+              // navigation to BookScreen
               child: ListView.builder(
                 itemBuilder: (ctx, index) {
                   return Container(
