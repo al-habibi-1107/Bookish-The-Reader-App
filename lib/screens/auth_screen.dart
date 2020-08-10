@@ -37,7 +37,7 @@ class _AuthScreenState extends State<AuthScreen> {
             )
           ],
         ),
-        // Top of the Stack - Layer 2 
+        // Top of the Stack - Layer 2
         // Contains the Title and the Authentication Card
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -47,23 +47,24 @@ class _AuthScreenState extends State<AuthScreen> {
               padding: EdgeInsets.only(top: 140, left: 20),
               alignment: Alignment.topLeft,
               height: 250,
-              child: Row(
-                children: <Widget>[
-                  Text(
-                    'Welcome To ',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 28, color: Colors.greenAccent),
-                  ),
-                  Text('Bookish ',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 28,
-                          color: Colors.greenAccent,
-                          fontWeight: FontWeight.bold)),
-                ],
-              ),
+              // child: Row(
+              //   children: <Widget>[
+              //     Text(
+              //       'Welcome To ',
+              //       textAlign: TextAlign.start,
+              //       style: TextStyle(fontSize: 28, color: Colors.greenAccent),
+              //     ),
+              //     Text(
+              //         'Bookish ',
+              //         textAlign: TextAlign.start,
+              //         style: TextStyle(
+              //             fontSize: 28,
+              //             color: Colors.greenAccent,
+              //             fontWeight: FontWeight.bold)),
+              //   ],
+              // ),
             ),
-            // Calling Authentication Card Widget - in widgets folder 
+            // Calling Authentication Card Widget - in widgets folder
             // Holds The design of the Authentication Card
             AuthCard(),
           ],
