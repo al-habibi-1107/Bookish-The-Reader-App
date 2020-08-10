@@ -9,8 +9,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size.height;
     return Scaffold(
+      // Stack - To stack the List of cards on
+      // the background 
       body: Stack(
         children: <Widget>[
+          //35% of device Size to fill with image 
           Container(
             height: deviceSize * 0.35,
             child: Image.asset(
@@ -18,6 +21,7 @@ class HomeScreen extends StatelessWidget {
               fit: BoxFit.contain,
             ),
           ),
+          // Stack Level 2
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
@@ -25,6 +29,7 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.only(left: 20),
                 height: 400,
                 width: double.infinity,
+                // The Home Card Widget, Code in widgets/home_card.dart
                 child: HomeCard(),
               ),
             ],

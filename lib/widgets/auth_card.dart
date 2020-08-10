@@ -5,28 +5,39 @@ import '../models/users.dart';
 import '../screens/home_screen.dart';
 
 class AuthCard extends StatefulWidget {
+  
   @override
   _AuthCardState createState() => _AuthCardState();
 }
 
 class _AuthCardState extends State<AuthCard> {
+  // form Key for Working with saving and showing the Form
   final _formKey = GlobalKey<FormState>();
 
+
+  // The parameters of the form - initially empty variables
   String _userName = '';
   String _email = '';
   String _password = '';
 
-  void _saveForm() {
 
+  // Function for Saving the form and accepting input 
+  // Called on pressing the arrow button
+  void _saveForm() {
+    // To check if all inputs are valid 
     final isValid = _formKey.currentState.validate();
 
     if (isValid) {
+    // If all inputs are valid then save the form 
       _formKey.currentState.save();
 
       if (!_isLogin) {
+        // if the card is in SignUp mode ,
+        // Check if user with that email exists
         if (!Provider.of<Users>(context)
             .addUser(_userName, _password, _email)) {
           Scaffold.of(context).showSnackBar(
+            // Show SnackBar with message if user already exists
             SnackBar(
               content: Text(
                 'User with that email alreaduy exists',
@@ -35,14 +46,21 @@ class _AuthCardState extends State<AuthCard> {
             ),
           );
         } else {
+          // Else create a user with the given credentials
           print('signup sucessful');
         }
       } else {
+        // If card is in Login mode
+        // send credentials to isAuth function in models/users.dart
+        // if the credentials are right , print login successful and
+        // Navigate to HomeScreen 
         if (Provider.of<Users>(context).isAuth(_password, _email)) {
           print('login successful');
           Navigator.of(context).pushNamed(HomeScreen.routeName);
         } else {
           Scaffold.of(context).showSnackBar(
+        // If credentials are not right 
+        // show a snackbar with message 
             SnackBar(
               duration: Duration(seconds: 3),
               content: Text(
@@ -60,6 +78,8 @@ class _AuthCardState extends State<AuthCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      // if in Login mode then size of card is less
+      // if in signup mode change size of card
       height: _isLogin ? 350 : 410,
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 10),
@@ -68,6 +88,7 @@ class _AuthCardState extends State<AuthCard> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25),
         ),
+        // for Scrollable Card
         child: SingleChildScrollView(
           padding: EdgeInsets.all(20),
           child: Form(
@@ -78,6 +99,8 @@ class _AuthCardState extends State<AuthCard> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
+                    // Switch Login and Signup modewith click of button
+                    // also call set state to update UI 
                     FlatButton(
                       onPressed: () {
                         setState(() {
@@ -120,6 +143,7 @@ class _AuthCardState extends State<AuthCard> {
                     ),
                   ],
                 ),
+                // If in SignUp mode Show username feild - with some validation
                 if (!_isLogin)
                   TextFormField(
                     key: ValueKey('username'),
@@ -171,6 +195,7 @@ class _AuthCardState extends State<AuthCard> {
                     _password = value;
                   },
                 ),
+                // Icon Button to save the form and check validation
                 SizedBox(height: 30),
                 FloatingActionButton(
                   onPressed: () {
