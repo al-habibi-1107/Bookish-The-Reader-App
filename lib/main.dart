@@ -6,6 +6,8 @@ import './models/users.dart';
 import './screens/home_screen.dart';
 import './models/books.dart';
 import './screens/book_screen.dart';
+import './models/cart.dart';
+import './screens/cart_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,6 +24,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: Books(),
         ),
+        ChangeNotifierProvider.value(
+          value: Cart(),
+        ),
       ],
       child: MaterialApp(
         title: 'Bookish',
@@ -29,13 +34,15 @@ class MyApp extends StatelessWidget {
         // email - admin@admin.com
         // password - adminname
         home: AuthScreen(),
-        // routes has the route to all pages in the app for 
+        // routes has the route to all pages in the app for
         // easy navigation between them
         routes: {
-        // HomeScreen - Contains the List of All books 
+          // HomeScreen - Contains the List of All books
           HomeScreen.routeName: (ctx) => HomeScreen(),
-        // BookScreen - Contains the Info on a Specific Book
+          // BookScreen - Contains the Info on a Specific Book
           BookScreen.routename: (ctx) => BookScreen(),
+          // CartScreen - Contains all items added to cart
+          CartScreen.routname : (ctx) => CartScreen()
 
         },
       ),
