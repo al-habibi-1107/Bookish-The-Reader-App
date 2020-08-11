@@ -157,11 +157,22 @@ class BookCard extends StatelessWidget {
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               height: 50,
               width: double.infinity,
-              child: Text(
-                'Add to Cart for 10\$',
-                textAlign: TextAlign.center,
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Add to Cart for  ',
+                    textAlign: TextAlign.center,
+                    style:
+                        TextStyle(color: Colors.white, fontWeight: FontWeight.w400),
+                  ),
+                  Text(
+                    '\$${currentBook.price}',
+                    textAlign: TextAlign.center,
+                    style:
+                        TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+                  ),
+                ],
               ),
             ),
           ),
