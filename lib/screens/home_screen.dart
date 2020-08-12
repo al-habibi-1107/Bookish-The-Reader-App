@@ -11,18 +11,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-int currentIndex=0;
-void _selectPage(int index){
-  setState(() {
-    currentIndex=index;
-  });
-}
+  int currentIndex = 0;
+  void _selectPage(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    
-
     final deviceSize = MediaQuery.of(context).size.height;
     return Scaffold(
       // Stack - To stack the List of cards on
@@ -54,25 +51,33 @@ void _selectPage(int index){
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
-        onTap: (index) =>_selectPage(index),
+        onTap: (index) => _selectPage(index),
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
             title: Text('Search'),
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.library_books),
-              title: Text('My Library'),
-              ),
+            icon: Icon(Icons.library_books),
+            title: Text('My Library'),
+          ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            title: GestureDetector(child: Text('Cart'),onTap: (){
-              Navigator.of(context).pushNamed(CartScreen.routname);
-            },),
+            icon: GestureDetector(
+              child: Icon(Icons.shopping_cart),
+              onTap: () {
+                Navigator.of(context).pushNamed(CartScreen.routname);
+              },
+            ),
+            title: GestureDetector(
+              child: Text('Cart'),
+              onTap: () {
+                Navigator.of(context).pushNamed(CartScreen.routname);
+              },
+            ),
           )
         ],
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.red,
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.grey,
         currentIndex: currentIndex,
       ),
     );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/book.dart';
+import '../models/cart.dart';
 
 class BookCard extends StatelessWidget {
   // currentBook is passed as parameter so that the card can access
@@ -149,7 +151,10 @@ class BookCard extends StatelessWidget {
           ),
           SizedBox(height: 20),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Provider.of<Cart>(context).addBook(currentBook);
+              Navigator.of(context).pop();
+            },
             child: Container(
               padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
