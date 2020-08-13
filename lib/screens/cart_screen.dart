@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 
 import 'package:bookish/widgets/cart_list.dart';
 import 'package:flutter/material.dart';
@@ -26,9 +26,10 @@ class CartScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            //The cross icon navigates to the previous page
             Container(
               child: IconButton(
-                icon: Icon(Icons.arrow_back_ios),
+                icon: Icon(Icons.clear),
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ),
@@ -100,14 +101,7 @@ class CartScreen extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(color:Colors.grey,offset:Offset(2,3))
                   ],
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.greenAccent,
-                      Colors.green,
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.topRight,
-                  ),
+                  color: Colors.green,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 margin: EdgeInsets.only(

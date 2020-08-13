@@ -39,10 +39,12 @@ class Cart with ChangeNotifier {
 
   void addBook(Book cartBook) {
     _cartItem.add(cartBook);
+    notifyListeners();
   }
 
   void removeBook(Book cartBook) {
     _cartItem.remove(cartBook);
+    notifyListeners();
   }
 
   double totalPrice(){

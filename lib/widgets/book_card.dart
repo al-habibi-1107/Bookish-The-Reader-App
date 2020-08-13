@@ -4,18 +4,37 @@ import 'package:provider/provider.dart';
 import '../models/book.dart';
 import '../models/cart.dart';
 
-class BookCard extends StatelessWidget {
+class BookCard extends StatefulWidget {
   // currentBook is passed as parameter so that the card can access
   // the book details of the book selected
   // dialogue is a function that shows the alert box with book
-  // description , when clicked on 
+  // description , when clicked on
   final Book currentBook;
   final Function dialogue;
-  BookCard(this.currentBook,this.dialogue);
+  BookCard(this.currentBook, this.dialogue);
+
+  @override
+  _BookCardState createState() => _BookCardState();
+}
+
+class _BookCardState extends State<BookCard> {
+  bool cart=false;
+  var color = Colors.blue;
+  void _change(BuildContext ctx) async {
+    setState(() {
+      color = Colors.green;
+      cart=true;
+    });
+    await new Future.delayed(Duration(seconds: 2));
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Card with rounded borders with info 
+    // await new Future.delayed(const Duration(seconds: 5));
+    //Navigator.of(context).pop();
+
+    // Card with rounded borders with info
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -27,7 +46,7 @@ class BookCard extends StatelessWidget {
         children: <Widget>[
           SizedBox(height: 145),
           Text(
-            currentBook.author,
+            widget.currentBook.author,
             style: TextStyle(
               color: Colors.grey,
               fontSize: 15,
@@ -35,7 +54,7 @@ class BookCard extends StatelessWidget {
           ),
           SizedBox(height: 3),
           Text(
-            currentBook.title,
+            widget.currentBook.title,
             style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 23,
@@ -87,7 +106,7 @@ class BookCard extends StatelessWidget {
                       ),
                       SizedBox(height: 5),
                       Text(
-                        '${currentBook.rating}',
+                        '${widget.currentBook.rating}',
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w600),
                       )
@@ -99,7 +118,7 @@ class BookCard extends StatelessWidget {
                       Text('Pages', style: TextStyle(color: Colors.grey)),
                       SizedBox(height: 5),
                       Text(
-                        '${currentBook.pages.round()}',
+                        '${widget.currentBook.pages.round()}',
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w600),
                       )
@@ -111,7 +130,7 @@ class BookCard extends StatelessWidget {
                       Text('Language', style: TextStyle(color: Colors.grey)),
                       SizedBox(height: 5),
                       Text(
-                        currentBook.language,
+                        widget.currentBook.language,
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w600),
                       )
@@ -134,15 +153,15 @@ class BookCard extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height:15),
+          SizedBox(height: 15),
           GestureDetector(
-            onTap: (){
-              dialogue();
+            onTap: () {
+              widget.dialogue();
             },
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                currentBook.desc,
+                widget.currentBook.desc,
                 style: TextStyle(fontSize: 18),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
@@ -152,30 +171,37 @@ class BookCard extends StatelessWidget {
           SizedBox(height: 20),
           GestureDetector(
             onTap: () {
-              Provider.of<Cart>(context).addBook(currentBook);
-              Navigator.of(context).pop();
+              Provider.of<Cart>(context).addBook(widget.currentBook);
+              _change(context);
             },
-            child: Container(
+            child: AnimatedContainer(
+              duration: Duration(seconds: 1),
               padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: Colors.green),
+                  borderRadius: BorderRadius.circular(20), color: color),
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               height: 50,
               width: double.infinity,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  if(!cart)
                   Text(
                     'Add to Cart for  ',
                     textAlign: TextAlign.center,
-                    style:
-                        TextStyle(color: Colors.white, fontWeight: FontWeight.w400),
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w400),
                   ),
+                  if(cart)
+                  Icon(Icons.card_travel),
+                   if(cart)
+                  SizedBox(width:10),
                   Text(
-                    '\$${currentBook.price}',
+                    cart?'Added To Cart'
+                    :'\$${widget.currentBook.price}',
                     textAlign: TextAlign.center,
-                    style:
-                        TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w700),
                   ),
                 ],
               ),
