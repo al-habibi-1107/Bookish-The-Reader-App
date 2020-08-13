@@ -12,6 +12,7 @@ class Book {
   final double pages;
   final String language;
   final String desc;
+  final double price;
 
   Book(
       {@required this.bookId,
@@ -22,5 +23,6 @@ class Book {
       @required this.imageUrl,
       @required this.language,
       @required this.pages,
-      @required this.desc});
+      @required this.desc,
+      @required this.price});
 }
