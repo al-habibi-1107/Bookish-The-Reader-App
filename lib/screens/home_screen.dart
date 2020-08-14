@@ -2,6 +2,7 @@ import 'package:bookish/screens/cart_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/home_card.dart';
+import './user_library_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home-screen';
@@ -77,7 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Text('Search'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.library_books),
+            icon: GestureDetector(child: Icon(Icons.library_books),onTap: (){
+              Navigator.of(context).pushNamed(UserLibrary.routeName);
+            },),
             title: Text('My Library'),
           ),
           BottomNavigationBarItem(

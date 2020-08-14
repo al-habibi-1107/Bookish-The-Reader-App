@@ -54,7 +54,9 @@ flutter:
     - assets/mountain1_bg.jpg
     - assets/book.jpg
     - assets/book-placeholder.png
-
+    - assets/man.png
+    - assets/female.png
+    - assets/empty_cart.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
