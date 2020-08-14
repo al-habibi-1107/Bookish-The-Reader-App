@@ -21,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size.height;
+
     return Scaffold(
       // Stack - To stack the List of cards on
       // the background
@@ -36,8 +37,26 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           // Stack Level 2
           Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(top: 50),
+                child: PopupMenuButton(
+                  itemBuilder: (_) => [
+                    PopupMenuItem(
+                      child: FlatButton(
+                        child: Text('Logout'),
+                        onPressed: () {
+                          Navigator.of(context).pushReplacementNamed('/');
+                        },
+                      ),
+                    )
+                  ],
+                  icon: Icon(Icons.more_vert),
+                ),
+              ),
+              SizedBox(height: deviceSize * 0.14),
               Container(
                 padding: EdgeInsets.only(left: 20),
                 height: 400,

@@ -56,7 +56,7 @@ class _AuthCardState extends State<AuthCard> {
         // Navigate to HomeScreen 
         if (Provider.of<Users>(context).isAuth(_password, _email)) {
           print('login successful');
-          Navigator.of(context).pushNamed(HomeScreen.routeName);
+          Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
         } else {
           Scaffold.of(context).showSnackBar(
         // If credentials are not right 

@@ -84,7 +84,7 @@ class CartScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '${total.toStringAsPrecision(4)}',
+                      '${total.toStringAsPrecision(3)}',
                       style: TextStyle(
                           fontSize: 22,
                           color: Colors.white,
