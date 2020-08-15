@@ -23,7 +23,7 @@ class _AuthCardState extends State<AuthCard> {
 
   // Function for Saving the form and accepting input 
   // Called on pressing the arrow button
-  void _saveForm() {
+  void _saveForm() async{
     // To check if all inputs are valid 
     final isValid = _formKey.currentState.validate();
 
@@ -34,13 +34,17 @@ class _AuthCardState extends State<AuthCard> {
       if (!_isLogin) {
         // if the card is in SignUp mode ,
         // Check if user with that email exists
-        if (!Provider.of<Users>(context)
-            .addUser(_userName, _password, _email)) {
+        // bool to resolve if the user exists
+        bool signup= await Provider.of<Users>(context)
+            .addUser(_userName, _password, _email);
+
+        // check wether user exists
+        if (!signup) {
           Scaffold.of(context).showSnackBar(
             // Show SnackBar with message if user already exists
             SnackBar(
               content: Text(
-                'User with that email alreaduy exists',
+                'User with that email already exists',
                 textAlign: TextAlign.center,
               ),
             ),
@@ -48,13 +52,15 @@ class _AuthCardState extends State<AuthCard> {
         } else {
           // Else create a user with the given credentials
           print('signup sucessful');
+          Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
         }
       } else {
         // If card is in Login mode
         // send credentials to isAuth function in models/users.dart
         // if the credentials are right , print login successful and
         // Navigate to HomeScreen 
-        if (Provider.of<Users>(context).isAuth(_password, _email)) {
+        bool login=await Provider.of<Users>(context).isAuth(_password, _email);
+        if (login) {
           print('login successful');
           Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
         } else {
