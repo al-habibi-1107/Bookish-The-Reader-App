@@ -171,7 +171,7 @@ class _BookCardState extends State<BookCard> {
           SizedBox(height: 20),
           GestureDetector(
             onTap: () {
-              Provider.of<Cart>(context).addBook(widget.currentBook);
+              Provider.of<Cart>(context).addBook(widget.currentBook.bookId);
               _change(context);
             },
             child: AnimatedContainer(
