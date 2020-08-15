@@ -1,22 +1,26 @@
-import 'dart:ffi';
-
+import 'package:bookish/models/library.dart';
 import 'package:bookish/widgets/cart_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/cart.dart';
+import '../models/library.dart';
 
 class CartScreen extends StatelessWidget {
   static const routname = '/cart-screen';
   @override
   Widget build(BuildContext context) {
-    //To access device size 
+    //To access device size
     final device = MediaQuery.of(context).size;
     // To access elements/methods of Cart class at /models/cart.dart
     final cart = Provider.of<Cart>(context);
     // To access the total price method at cart.dart
     final total = cart.totalPrice();
 
+    bool isEmpty=false;
+    if(cart.cartItem.length==0){
+      isEmpty=true;
+    }
     return Scaffold(
       body: Container(
         padding: EdgeInsets.only(
@@ -26,9 +30,10 @@ class CartScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            //The cross icon navigates to the previous page
             Container(
               child: IconButton(
-                icon: Icon(Icons.arrow_back_ios),
+                icon: Icon(Icons.clear),
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ),
@@ -53,7 +58,13 @@ class CartScreen extends StatelessWidget {
               ),
             ),
             Container(
-              child: Expanded(
+              child:isEmpty?Center(child:Column(
+                children:[
+                  Image.asset('assets/empty_cart.png'),
+                  Text('Your Cart is empty!!\n Add some books..',style:TextStyle(fontSize: 15 ))
+                ]
+              )
+              ): Expanded(
                 child: ListView.builder(
                     itemBuilder: (ctx, i) {
                       // To display a Widget containing the info of the book
@@ -63,9 +74,15 @@ class CartScreen extends StatelessWidget {
                     itemCount: cart.cartItem.length),
               ),
             ),
-            // The bottom Button 
+            // The bottom Button
             GestureDetector(
-              onTap: (){},
+              onTap: () {
+                int i = 0;
+                for (i = 0; i < cart.cartItem.length; i++) {
+                  Provider.of<Library>(context).addtolib(cart.cartItem[i]);
+                }
+                cart.clearCart();
+              },
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: Row(
@@ -83,7 +100,7 @@ class CartScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '${total.toStringAsPrecision(4)}',
+                      '${total.toStringAsPrecision(3)}',
                       style: TextStyle(
                           fontSize: 22,
                           color: Colors.white,
@@ -98,16 +115,9 @@ class CartScreen extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   boxShadow: [
-                    BoxShadow(color:Colors.grey,offset:Offset(2,3))
+                    BoxShadow(color: Colors.grey, offset: Offset(2, 3))
                   ],
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.greenAccent,
-                      Colors.green,
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.topRight,
-                  ),
+                  color: Colors.green,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 margin: EdgeInsets.only(

@@ -8,6 +8,8 @@ import './models/books.dart';
 import './screens/book_screen.dart';
 import './models/cart.dart';
 import './screens/cart_screen.dart';
+import './models/library.dart';
+import './screens/user_library_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +29,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: Cart(),
         ),
+        ChangeNotifierProvider.value(
+          value: Library(),
+        )
       ],
       child: MaterialApp(
         title: 'Bookish',
@@ -42,7 +47,9 @@ class MyApp extends StatelessWidget {
           // BookScreen - Contains the Info on a Specific Book
           BookScreen.routename: (ctx) => BookScreen(),
           // CartScreen - Contains all items added to cart
-          CartScreen.routname : (ctx) => CartScreen()
+          CartScreen.routname: (ctx) => CartScreen(),
+          // UserLibrary - Contains the purchased books
+          UserLibrary.routeName: (ctx)=> UserLibrary()
 
         },
       ),

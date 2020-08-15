@@ -55,7 +55,7 @@ class BookScreen extends StatelessWidget {
                 // BookCard - widget for displaying the card with title
                 //and other info of the selected book
                 //code in /widgets/book_card
-                child: BookCard(currentBook, dialogue),
+                child: SingleChildScrollView(child: BookCard(currentBook, dialogue)),
               )
             ],
           ),
