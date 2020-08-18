@@ -1,8 +1,13 @@
 import 'package:sqflite/sqflite.dart' as sql;
 import 'package:path/path.dart' as path;
 import 'package:sqflite/sqflite.dart';
+import 'dart:async';
 
 class DBHelper {
+
+  //-----------------------------USER DATABASE---------------------------//
+
+
   // A method to get a path and connection to the database
   // if the database is not present a new database table is created 
   static Future<Database> database() async {
@@ -17,6 +22,7 @@ class DBHelper {
     }, version: 1);
   }
 
+  
   // A query to insert user data to the table
   // usually used in signup mode
   static Future<void> insert(String table, Map<String, Object> data) async {
@@ -35,4 +41,27 @@ class DBHelper {
   final db = await DBHelper.database();
   return db.query(table);
   }
+
+  // ---------------------------- CART DATABASE -------------------------//
+
+  // get access to the database consisting of the cart
+  // the users and their books that are added tp cart
+  static Future<Database> cartDatabase() async {
+    // gives a path to the database on device
+    final dbPath = await sql.getDatabasesPath();
+    // Created a db file cart.db and a table with
+    // the provided parameters
+    return sql.openDatabase(path.join(dbPath, 'cart.db'),
+        onCreate: (db, version) {
+      return db.execute(
+          'CREATE TABLE users(user TEXT ,bookId INTEGER)');
+    }, version: 1);
+  }
+
+  static Future<void> insertCart(String table,Map<String,Object> data)async{
+    final db = await cartDatabase();
+    db.insert(table, data,conflictAlgorithm: sql.ConflictAlgorithm.ignore);
+
+  }
+
 }

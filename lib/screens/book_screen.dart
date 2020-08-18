@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/book.dart';
 import '../widgets/book_card.dart';
+import '../models/users.dart';
 
 class BookScreen extends StatelessWidget {
   static const routename = '/book-screen';
@@ -12,6 +14,7 @@ class BookScreen extends StatelessWidget {
     // screen and storing it in a variable to access its properties
     final Book currentBook = ModalRoute.of(context).settings.arguments;
     final device = MediaQuery.of(context).size;
+    final String currentUser=Provider.of<Users>(context).getCurrentUser();
 
     void dialogue() {
       showDialog(
@@ -55,7 +58,7 @@ class BookScreen extends StatelessWidget {
                 // BookCard - widget for displaying the card with title
                 //and other info of the selected book
                 //code in /widgets/book_card
-                child: SingleChildScrollView(child: BookCard(currentBook, dialogue)),
+                child: SingleChildScrollView(child: BookCard(currentBook, dialogue,currentUser)),
               )
             ],
           ),
