@@ -16,9 +16,13 @@ class DBHelper {
     // Created a db file users.db and a table with
     // the provided parameters
     return sql.openDatabase(path.join(dbPath, 'users.db'),
-        onCreate: (db, version) {
-      return db.execute(
+        onCreate: (db, version) async{
+       db.execute(
           'CREATE TABLE users(email TEXT ,username TEXT, password TEXT)');
+
+       db.execute(
+          'CREATE TABLE cart(user TEXT ,bookId INTEGER)');
+    
     }, version: 1);
   }
 
@@ -44,24 +48,13 @@ class DBHelper {
 
   // ---------------------------- CART DATABASE -------------------------//
 
-  // get access to the database consisting of the cart
-  // the users and their books that are added tp cart
-  static Future<Database> cartDatabase() async {
-    // gives a path to the database on device
-    final dbPath = await sql.getDatabasesPath();
-    // Created a db file cart.db and a table with
-    // the provided parameters
-    return sql.openDatabase(path.join(dbPath, 'cart.db'),
-        onCreate: (db, version) {
-      return db.execute(
-          'CREATE TABLE users(user TEXT ,bookId INTEGER)');
-    }, version: 1);
-  }
+  
 
   static Future<void> insertCart(String table,Map<String,Object> data)async{
-    final db = await cartDatabase();
+    final db = await database();
     db.insert(table, data,conflictAlgorithm: sql.ConflictAlgorithm.ignore);
 
   }
+  
 
 }
