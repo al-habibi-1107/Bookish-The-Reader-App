@@ -55,6 +55,11 @@ class DBHelper {
     db.insert(table, data,conflictAlgorithm: sql.ConflictAlgorithm.ignore);
 
   }
+  static Future<List<Map<String,dynamic>>> getCartData(String table) async{
+
+  final db = await DBHelper.database();
+  return db.query(table);
+  }
   
 
 }
