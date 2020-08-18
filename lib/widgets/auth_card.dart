@@ -53,6 +53,7 @@ class _AuthCardState extends State<AuthCard> {
           // Else create a user with the given credentials
           print('signup sucessful');
           Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+          Provider.of<Users>(context).setCurrentUser(_email);
         }
       } else {
         // If card is in Login mode
@@ -63,6 +64,7 @@ class _AuthCardState extends State<AuthCard> {
         if (login) {
           print('login successful');
           Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+          Provider.of<Users>(context).setCurrentUser(_email);
         } else {
           Scaffold.of(context).showSnackBar(
         // If credentials are not right 

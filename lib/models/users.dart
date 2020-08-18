@@ -6,6 +6,7 @@ import './user.dart';
 // ChangeNotifier enables provider to be accessible
 
 class Users with ChangeNotifier {
+  String _currentUser='';
   List<User> _users = [
     User(
       username: 'adminname',
@@ -89,5 +90,12 @@ class Users with ChangeNotifier {
       return true;
     }
     return false;
+  }
+  void setCurrentUser(String user){
+    _currentUser=user;
+  }
+
+  String getCurrentUser(){
+    return _currentUser;
   }
 }
