@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '../main.dart';
 import '../models/users.dart';
 import '../screens/home_screen.dart';
 
 class AuthCard extends StatefulWidget {
-  
   @override
   _AuthCardState createState() => _AuthCardState();
 }
@@ -14,28 +13,26 @@ class _AuthCardState extends State<AuthCard> {
   // form Key for Working with saving and showing the Form
   final _formKey = GlobalKey<FormState>();
 
-
   // The parameters of the form - initially empty variables
   String _userName = '';
   String _email = '';
   String _password = '';
 
-
-  // Function for Saving the form and accepting input 
+  // Function for Saving the form and accepting input
   // Called on pressing the arrow button
-  void _saveForm() async{
-    // To check if all inputs are valid 
+  void _saveForm() async {
+    // To check if all inputs are valid
     final isValid = _formKey.currentState.validate();
 
     if (isValid) {
-    // If all inputs are valid then save the form 
+      // If all inputs are valid then save the form
       _formKey.currentState.save();
 
       if (!_isLogin) {
         // if the card is in SignUp mode ,
         // Check if user with that email exists
         // bool to resolve if the user exists
-        bool signup= await Provider.of<Users>(context)
+        bool signup = await Provider.of<Users>(context)
             .addUser(_userName, _password, _email);
 
         // check wether user exists
@@ -59,16 +56,17 @@ class _AuthCardState extends State<AuthCard> {
         // If card is in Login mode
         // send credentials to isAuth function in models/users.dart
         // if the credentials are right , print login successful and
-        // Navigate to HomeScreen 
-        bool login=await Provider.of<Users>(context).isAuth(_password, _email);
+        // Navigate to HomeScreen
+        bool login =
+            await Provider.of<Users>(context).isAuth(_password, _email);
         if (login) {
           print('login successful');
           Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
           Provider.of<Users>(context).setCurrentUser(_email);
         } else {
           Scaffold.of(context).showSnackBar(
-        // If credentials are not right 
-        // show a snackbar with message 
+            // If credentials are not right
+            // show a snackbar with message
             SnackBar(
               duration: Duration(seconds: 3),
               content: Text(
@@ -92,6 +90,7 @@ class _AuthCardState extends State<AuthCard> {
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Card(
+        color: dark() == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.grey[50],
         margin: EdgeInsets.all(15),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25),
@@ -108,7 +107,7 @@ class _AuthCardState extends State<AuthCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     // Switch Login and Signup modewith click of button
-                    // also call set state to update UI 
+                    // also call set state to update UI
                     FlatButton(
                       onPressed: () {
                         setState(() {
@@ -127,7 +126,9 @@ class _AuthCardState extends State<AuthCard> {
                           decorationColor: Colors.orange,
                         ),
                       ),
-                      textColor: _isLogin ? Colors.black : Colors.grey,
+                      textColor: _isLogin
+                          ? (dark() == 1 ? Colors.white : Colors.black54)
+                          : Colors.grey[400],
                     ),
                     FlatButton(
                       onPressed: () {
@@ -147,17 +148,27 @@ class _AuthCardState extends State<AuthCard> {
                           decorationColor: Colors.orange,
                         ),
                       ),
-                      textColor: !_isLogin ? Colors.black : Colors.grey,
+                      textColor: !_isLogin
+                          ? (dark() == 1 ? Colors.white : Colors.black54)
+                          : Colors.grey[400],
                     ),
                   ],
                 ),
                 // If in SignUp mode Show username feild - with some validation
                 if (!_isLogin)
                   TextFormField(
+                    style: TextStyle(
+                      color: (dark() == 1 ? Colors.white : Colors.black54),
+                    ),
                     key: ValueKey('username'),
                     decoration: InputDecoration(
                       labelText: 'Username',
-                      icon: Icon(Icons.perm_identity),
+                      labelStyle: TextStyle(
+                          color:
+                              (dark() == 1 ? Colors.white60 : Colors.black54)),
+                      icon: Icon(Icons.perm_identity,
+                          color:
+                              (dark() == 1 ? Colors.white70 : Colors.black54)),
                     ),
                     validator: (value) {
                       if (value.isEmpty || value.length < 5) {
@@ -170,11 +181,17 @@ class _AuthCardState extends State<AuthCard> {
                     },
                   ),
                 TextFormField(
+                  style: TextStyle(
+                    color: (dark() == 1 ? Colors.white : Colors.black54),
+                  ),
                   key: ValueKey('email'),
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: 'Email',
-                    icon: Icon(Icons.mail),
+                    labelStyle: TextStyle(
+                        color: (dark() == 1 ? Colors.white60 : Colors.black54)),
+                    icon: Icon(Icons.mail,
+                        color: (dark() == 1 ? Colors.white70 : Colors.black54)),
                   ),
                   validator: (value) {
                     if (value.isEmpty || !value.contains('@')) {
@@ -187,10 +204,16 @@ class _AuthCardState extends State<AuthCard> {
                   },
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: (dark() == 1 ? Colors.white : Colors.black54),
+                  ),
                   key: ValueKey('password'),
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    icon: Icon(Icons.lock),
+                    labelStyle: TextStyle(
+                        color: (dark() == 1 ? Colors.white60 : Colors.black54)),
+                    icon: Icon(Icons.lock,
+                        color: (dark() == 1 ? Colors.white70 : Colors.black54)),
                   ),
                   obscureText: true,
                   validator: (value) {

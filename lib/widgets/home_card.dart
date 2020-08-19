@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
-
+import '../main.dart';
 import '../models/books.dart';
 import '../screens/book_screen.dart';
 
@@ -11,6 +12,7 @@ class HomeCard extends StatelessWidget {
     final books = Provider.of<Books>(context).books;
     // Card with rounded side borders
     return Card(
+      color: dark() == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.grey[50],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -32,33 +34,42 @@ class HomeCard extends StatelessWidget {
             Text(
               'Discover New',
               textAlign: TextAlign.left,
-              style:
-                  TextStyle(fontSize: 28, fontFamily: 'PlayfairDisplay-Italic'),
+              style: TextStyle(
+                  fontSize: 28,
+                  color: (dark() == 1 ? Colors.white : Colors.black54),
+                  fontFamily: 'PlayfairDisplay-Italic'),
             ),
             SizedBox(
               height: 5,
             ),
             Text(
               'Hunt new books before other bookworms do it..',
-              style: TextStyle(fontSize: 12, color: Colors.grey),
+              style: TextStyle(
+                fontSize: 12,
+                color: (dark() == 1 ? Colors.white60 : Colors.black54),
+              ),
             ),
             SizedBox(
               height: 10,
             ),
             Expanded(
               // A list view for all the info on books with
-              // Gesture detector to enable clicking and 
+              // Gesture detector to enable clicking and
               // navigation to BookScreen
               child: ListView.builder(
                 itemBuilder: (ctx, index) {
                   return Container(
                     width: 110,
+                    color: dark() == 1
+                        ? Color.fromRGBO(101, 119, 134, 1)
+                        : Colors.grey[50],
                     margin: EdgeInsets.all(10),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pushNamed(BookScreen.routename,
-                            arguments: books[index],);
-                       
+                        Navigator.of(context).pushNamed(
+                          BookScreen.routename,
+                          arguments: books[index],
+                        );
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -81,13 +92,19 @@ class HomeCard extends StatelessWidget {
                             books[index].author,
                             style: TextStyle(
                               fontSize: 12,
-                              color: Colors.grey,
+                              color: (dark() == 1
+                                  ? Colors.white60
+                                  : Colors.black54),
                             ),
                           ),
                           Text(
                             books[index].title,
                             softWrap: true,
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  (dark() == 1 ? Colors.white : Colors.black54),
+                            ),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                           )

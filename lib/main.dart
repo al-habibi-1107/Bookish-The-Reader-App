@@ -49,10 +49,17 @@ class MyApp extends StatelessWidget {
           // CartScreen - Contains all items added to cart
           CartScreen.routname: (ctx) => CartScreen(),
           // UserLibrary - Contains the purchased books
-          UserLibrary.routeName: (ctx)=> UserLibrary()
-
+          UserLibrary.routeName: (ctx) => UserLibrary()
         },
       ),
     );
   }
+}
+
+//night mode variable
+// dark = 1 >> night
+// dark = 0 >> day
+int dark() {
+  int dark = 1;
+  return dark;
 }

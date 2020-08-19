@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '../main.dart';
 import '../models/book.dart';
 import '../models/cart.dart';
-
 
 class BookCard extends StatefulWidget {
   // currentBook is passed as parameter so that the card can access
@@ -13,20 +12,19 @@ class BookCard extends StatefulWidget {
   final Book currentBook;
   final Function dialogue;
   final String currentUser;
-  BookCard(this.currentBook, this.dialogue,this.currentUser);
+  BookCard(this.currentBook, this.dialogue, this.currentUser);
 
   @override
   _BookCardState createState() => _BookCardState();
 }
 
 class _BookCardState extends State<BookCard> {
-  
-  bool cart=false;
+  bool cart = false;
   var color = Colors.blue;
   void _change(BuildContext ctx) async {
     setState(() {
       color = Colors.green;
-      cart=true;
+      cart = true;
     });
     await new Future.delayed(Duration(seconds: 2));
     Navigator.of(context).pop();
@@ -43,7 +41,7 @@ class _BookCardState extends State<BookCard> {
         borderRadius: BorderRadius.only(
             topRight: Radius.circular(40), topLeft: Radius.circular(40)),
       ),
-      color: Colors.white,
+      color: dark() == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.white,
       elevation: 10,
       child: Column(
         children: <Widget>[
@@ -51,14 +49,15 @@ class _BookCardState extends State<BookCard> {
           Text(
             widget.currentBook.author,
             style: TextStyle(
-              color: Colors.grey,
+              color: dark() == 1 ? Colors.grey[400] : Colors.black54,
               fontSize: 15,
             ),
           ),
-          SizedBox(height: 3),
+          SizedBox(height: 4),
           Text(
             widget.currentBook.title,
             style: TextStyle(
+                color: dark() == 1 ? Colors.white : Colors.black54,
                 fontWeight: FontWeight.w500,
                 fontSize: 23,
                 fontFamily: 'PlayfairDisplay-Italic'),
@@ -68,6 +67,7 @@ class _BookCardState extends State<BookCard> {
           ),
           SizedBox(height: 20),
           Divider(
+            color: dark() == 1 ? Colors.blueGrey[100] : Colors.black54,
             indent: 30,
             endIndent: 30,
             thickness: 1.7,
@@ -76,6 +76,7 @@ class _BookCardState extends State<BookCard> {
           Text(
             'About Book',
             style: TextStyle(
+              color: dark() == 1 ? Colors.white : Colors.black54,
               fontSize: 15,
               fontWeight: FontWeight.w600,
             ),
@@ -95,8 +96,10 @@ class _BookCardState extends State<BookCard> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               borderOnForeground: true,
-              elevation: 1,
-              color: Color.fromRGBO(255, 255, 255, 0.85),
+              elevation: 0.5,
+              color: dark() == 1
+                  ? Color.fromRGBO(101, 119, 124, 0.2)
+                  : Colors.grey[50],
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
@@ -105,37 +108,44 @@ class _BookCardState extends State<BookCard> {
                     children: <Widget>[
                       Text(
                         'Rating',
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(color: Colors.grey[300]),
                       ),
                       SizedBox(height: 5),
                       Text(
                         '${widget.currentBook.rating}',
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w600),
+                            color: dark() == 1 ? Colors.white : Colors.black54,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600),
                       )
                     ],
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('Pages', style: TextStyle(color: Colors.grey)),
+                      Text('Pages', style: TextStyle(color: Colors.grey[300])),
                       SizedBox(height: 5),
                       Text(
                         '${widget.currentBook.pages.round()}',
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w600),
+                            color: dark() == 1 ? Colors.white : Colors.black54,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600),
                       )
                     ],
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('Language', style: TextStyle(color: Colors.grey)),
+                      Text('Language',
+                          style: TextStyle(color: Colors.grey[300])),
                       SizedBox(height: 5),
                       Text(
                         widget.currentBook.language,
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w600),
+                            color: dark() == 1 ? Colors.white : Colors.black54,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600),
                       )
                     ],
                   ),
@@ -152,7 +162,7 @@ class _BookCardState extends State<BookCard> {
               'Description',
               textAlign: TextAlign.left,
               style: TextStyle(
-                color: Colors.grey,
+                color: dark() == 1 ? Colors.grey[200] : Colors.black54,
               ),
             ),
           ),
@@ -165,7 +175,10 @@ class _BookCardState extends State<BookCard> {
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
                 widget.currentBook.desc,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: dark() == 1 ? Colors.white70 : Colors.black54,
+                ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -174,7 +187,8 @@ class _BookCardState extends State<BookCard> {
           SizedBox(height: 20),
           GestureDetector(
             onTap: () {
-              Provider.of<Cart>(context).addBook(widget.currentBook.bookId,widget.currentUser);
+              Provider.of<Cart>(context)
+                  .addBook(widget.currentBook.bookId, widget.currentUser);
               _change(context);
             },
             child: AnimatedContainer(
@@ -188,20 +202,17 @@ class _BookCardState extends State<BookCard> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  if(!cart)
+                  if (!cart)
+                    Text(
+                      'Add to Cart for  ',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.w400),
+                    ),
+                  if (cart) Icon(Icons.card_travel),
+                  if (cart) SizedBox(width: 10),
                   Text(
-                    'Add to Cart for  ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w400),
-                  ),
-                  if(cart)
-                  Icon(Icons.card_travel),
-                   if(cart)
-                  SizedBox(width:10),
-                  Text(
-                    cart?'Added To Cart'
-                    :'\$${widget.currentBook.price}',
+                    cart ? 'Added To Cart' : '\$${widget.currentBook.price}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w700),
