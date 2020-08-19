@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '../main.dart';
 import '../models/library.dart';
 
 class UserLibrary extends StatefulWidget {
@@ -18,6 +18,8 @@ class _UserLibraryState extends State<UserLibrary> {
     final libraryItem = Provider.of<Library>(context);
 
     return Scaffold(
+      backgroundColor:
+          dark() == 1 ? Color.fromRGBO(101, 119, 134, 0.8) : Colors.grey[50],
       body: Stack(
         children: <Widget>[
           //35% of device Size to fill with image
@@ -60,7 +62,7 @@ class _UserLibraryState extends State<UserLibrary> {
                             fit: BoxFit.contain,
                           ),
                     radius: 50,
-                    backgroundColor: Colors.white,
+                    backgroundColor: dark() == 1 ? Colors.black : Colors.white,
                   ),
                 ),
                 Row(

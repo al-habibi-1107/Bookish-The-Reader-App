@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../main.dart';
 import '../models/cart.dart';
 
 class CartList extends StatefulWidget {
@@ -33,7 +33,7 @@ class _CartListState extends State<CartList> {
       key: ValueKey(widget.cart.cartItem[widget.i].bookId),
       onDismissed: (direction) {
         setState(() {
-          // On swiping , the removeBook method is called 
+          // On swiping , the removeBook method is called
           // code at /models/cart.dart so thta it removes
           // the book from the list of book in the cart
           widget.cart.removeBook(widget.cart.cartItem[widget.i].bookId);
@@ -45,6 +45,8 @@ class _CartListState extends State<CartList> {
         padding: EdgeInsets.only(left: 30),
         height: 120,
         width: double.infinity,
+        color:
+            dark() == 1 ? Color.fromRGBO(101, 119, 134, 0.8) : Colors.grey[50],
         child: Row(
           children: [
             ClipRRect(
@@ -59,10 +61,14 @@ class _CartListState extends State<CartList> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
+                  color: dark() == 1
+                      ? Color.fromRGBO(101, 119, 134, 0.8)
+                      : Colors.grey[50],
                   width: 200,
                   child: Text(
                     widget.cart.cartItem[widget.i].title,
                     style: TextStyle(
+                        color: dark() == 1 ? Colors.white : Colors.black54,
                         fontSize: 25,
                         fontWeight: FontWeight.w500,
                         fontFamily: 'PlayfairDisplay-Italic'),
@@ -77,7 +83,7 @@ class _CartListState extends State<CartList> {
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
                       fontFamily: 'PlayfairDisplay-Italic',
-                      color: Colors.grey),
+                      color: dark() == 1 ? Colors.grey[200] : Colors.black54),
                 ),
                 SizedBox(
                   height: 30,

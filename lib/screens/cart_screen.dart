@@ -2,7 +2,7 @@ import 'package:bookish/models/library.dart';
 import 'package:bookish/widgets/cart_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '../main.dart';
 import '../models/cart.dart';
 import '../models/library.dart';
 
@@ -17,11 +17,13 @@ class CartScreen extends StatelessWidget {
     // To access the total price method at cart.dart
     final total = cart.totalPrice();
 
-    bool isEmpty=false;
-    if(cart.cartItem.length==0){
-      isEmpty=true;
+    bool isEmpty = false;
+    if (cart.cartItem.length == 0) {
+      isEmpty = true;
     }
     return Scaffold(
+      backgroundColor:
+          dark() == 1 ? Color.fromRGBO(101, 119, 134, 0.8) : Colors.grey[50],
       body: Container(
         padding: EdgeInsets.only(
           top: 50,
@@ -33,7 +35,10 @@ class CartScreen extends StatelessWidget {
             //The cross icon navigates to the previous page
             Container(
               child: IconButton(
-                icon: Icon(Icons.clear),
+                icon: Icon(
+                  Icons.clear,
+                  color: dark() == 1 ? Colors.white : Colors.grey[600],
+                ),
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ),
@@ -48,31 +53,40 @@ class CartScreen extends StatelessWidget {
                   Text(
                     'Your Cart',
                     style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: dark() == 1 ? Colors.white : Colors.grey[800]),
                   ),
                   SizedBox(height: 9),
-                  Text('A Total Of ${cart.cartItem.length} items')
+                  Text(
+                    'A Total Of ${cart.cartItem.length} items',
+                    style: TextStyle(
+                        color: dark() == 1 ? Colors.white54 : Colors.grey[50]),
+                  )
                 ],
               ),
             ),
             Container(
-              child:isEmpty?Center(child:Column(
-                children:[
-                  Image.asset('assets/empty_cart.png'),
-                  Text('Your Cart is empty!!\n Add some books..',style:TextStyle(fontSize: 15 ))
-                ]
-              )
-              ): Expanded(
-                child: ListView.builder(
-                    itemBuilder: (ctx, i) {
-                      // To display a Widget containing the info of the book
-                      // code at /widgets/cart_list.dart
-                      return CartList(cart, i);
-                    },
-                    itemCount: cart.cartItem.length),
-              ),
+              child: isEmpty
+                  ? Center(
+                      child: Column(children: [
+                      Image.asset('assets/empty_cart.png'),
+                      Text('Your Cart is empty!!\n Add some books..',
+                          style: TextStyle(
+                            fontSize: 15,
+                            color:
+                                dark() == 1 ? Colors.white54 : Colors.grey[800],
+                          ))
+                    ]))
+                  : Expanded(
+                      child: ListView.builder(
+                          itemBuilder: (ctx, i) {
+                            // To display a Widget containing the info of the book
+                            // code at /widgets/cart_list.dart
+                            return CartList(cart, i);
+                          },
+                          itemCount: cart.cartItem.length),
+                    ),
             ),
             // The bottom Button
             GestureDetector(
@@ -89,7 +103,9 @@ class CartScreen extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       'Total',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
                     SizedBox(width: 10),
                     Text(
@@ -115,7 +131,11 @@ class CartScreen extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   boxShadow: [
-                    BoxShadow(color: Colors.grey, offset: Offset(2, 3))
+                    BoxShadow(
+                        color: dark() == 1
+                            ? Color.fromRGBO(101, 119, 134, 0.8)
+                            : Colors.grey[50],
+                        offset: Offset(2, 3))
                   ],
                   color: Colors.green,
                   borderRadius: BorderRadius.circular(20),
