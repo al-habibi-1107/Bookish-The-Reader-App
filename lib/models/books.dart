@@ -52,4 +52,8 @@ class Books with ChangeNotifier {
   List<Book> get books {
     return _books;
   }
+
+  Book getBookById(int bookId){
+    return _books.firstWhere((element) => element.bookId==bookId);
+  }
 }

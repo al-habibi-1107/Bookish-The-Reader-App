@@ -1,7 +1,9 @@
 import 'package:bookish/screens/cart_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/home_card.dart';
+import '../models/cart.dart';
 import './user_library_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
       currentIndex = index;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
             title: GestureDetector(
               child: Text('Cart'),
               onTap: () {
+                Provider.of<Cart>(context).cartdatabase();
                 Navigator.of(context).pushNamed(CartScreen.routname);
               },
             ),

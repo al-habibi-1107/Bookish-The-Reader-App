@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../models/book.dart';
 import '../models/cart.dart';
 
+
 class BookCard extends StatefulWidget {
   // currentBook is passed as parameter so that the card can access
   // the book details of the book selected
@@ -11,13 +12,15 @@ class BookCard extends StatefulWidget {
   // description , when clicked on
   final Book currentBook;
   final Function dialogue;
-  BookCard(this.currentBook, this.dialogue);
+  final String currentUser;
+  BookCard(this.currentBook, this.dialogue,this.currentUser);
 
   @override
   _BookCardState createState() => _BookCardState();
 }
 
 class _BookCardState extends State<BookCard> {
+  
   bool cart=false;
   var color = Colors.blue;
   void _change(BuildContext ctx) async {
@@ -171,7 +174,7 @@ class _BookCardState extends State<BookCard> {
           SizedBox(height: 20),
           GestureDetector(
             onTap: () {
-              Provider.of<Cart>(context).addBook(widget.currentBook);
+              Provider.of<Cart>(context).addBook(widget.currentBook.bookId,widget.currentUser);
               _change(context);
             },
             child: AnimatedContainer(
