@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 import '../models/cart.dart';
 import '../models/library.dart';
+import '../models/users.dart';
 
 class CartScreen extends StatelessWidget {
   static const routname = '/cart-screen';
@@ -91,9 +92,10 @@ class CartScreen extends StatelessWidget {
             // The bottom Button
             GestureDetector(
               onTap: () {
+               final currentUser=Provider.of<Users>(context).getCurrentUser();
                 int i = 0;
                 for (i = 0; i < cart.cartItem.length; i++) {
-                  Provider.of<Library>(context).addtolib(cart.cartItem[i]);
+                  Provider.of<Library>(context).addtolib(cart.cartItem[i],currentUser);
                 }
                 cart.clearCart();
               },

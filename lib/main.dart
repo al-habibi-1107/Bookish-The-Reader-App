@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
 //night mode variable
 // dark = 1 >> night
 // dark = 0 >> day
-  int darkVal = 1;
+  int darkVal = 0;
 int  get dark {
   return darkVal;
 }

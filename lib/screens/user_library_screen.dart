@@ -74,7 +74,7 @@ class _UserLibraryState extends State<UserLibrary> {
                           isBoy = true;
                         });
                       },
-                      label: Text('Reader Boy'),
+                      label: Text('Mr.BookWorm'),
                       icon: Icon(Icons.person),
                       color: Colors.blue,
                     ),
@@ -85,7 +85,7 @@ class _UserLibraryState extends State<UserLibrary> {
                         });
                       },
                       icon: Icon(Icons.pregnant_woman),
-                      label: Text('Reader Girl'),
+                      label: Text('Ms.BookWorm'),
                       color: Colors.pink,
                     )
                   ],
