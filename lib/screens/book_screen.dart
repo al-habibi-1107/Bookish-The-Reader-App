@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '../main.dart';
 import '../models/book.dart';
 import '../widgets/book_card.dart';
 import '../models/users.dart';
@@ -14,21 +14,33 @@ class BookScreen extends StatelessWidget {
     // screen and storing it in a variable to access its properties
     final Book currentBook = ModalRoute.of(context).settings.arguments;
     final device = MediaQuery.of(context).size;
-    final String currentUser=Provider.of<Users>(context).getCurrentUser();
+    final String currentUser = Provider.of<Users>(context).getCurrentUser();
 
     void dialogue() {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text(currentBook.title),
-          content: Text(currentBook.desc),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          backgroundColor:
+              dark() == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.grey[50],
+          title: Text(
+            currentBook.title,
+            style:
+                TextStyle(color: dark() == 1 ? Colors.white : Colors.black54),
+          ),
+          content: Text(
+            currentBook.desc,
+            style:
+                TextStyle(color: dark() == 1 ? Colors.white : Colors.black54),
+          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         ),
       );
     }
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(255, 255, 255, 0.85),
+      backgroundColor:
+          dark() == 1 ? Color.fromRGBO(101, 119, 134, 0.5) : Colors.grey[50],
       // For Stacking up the card and the book image
       body: Stack(
         children: <Widget>[
@@ -42,7 +54,10 @@ class BookScreen extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 height: device.height * 0.23,
                 child: IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: dark() == 1 ? Colors.white : Colors.grey[800],
+                  ),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -50,16 +65,15 @@ class BookScreen extends StatelessWidget {
               ),
 
               Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 8,
-                ),
-                height: device.height * 0.77,
-                width: device.width,
-                // BookCard - widget for displaying the card with title
-                //and other info of the selected book
-                //code in /widgets/book_card
-                child:  BookCard(currentBook, dialogue,currentUser)),
-              
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 8,
+                  ),
+                  height: device.height * 0.77,
+                  width: device.width,
+                  // BookCard - widget for displaying the card with title
+                  //and other info of the selected book
+                  //code in /widgets/book_card
+                  child: BookCard(currentBook, dialogue, currentUser)),
             ],
           ),
           // Container having the image of the book,

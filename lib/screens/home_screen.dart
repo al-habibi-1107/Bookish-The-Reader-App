@@ -1,7 +1,7 @@
 import 'package:bookish/screens/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '../main.dart';
 import '../widgets/home_card.dart';
 import '../models/cart.dart';
 import './user_library_screen.dart';
@@ -21,12 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      backgroundColor:
+          dark() == 1 ? Color.fromRGBO(170, 184, 194, 1) : Colors.grey[50],
       // Stack - To stack the List of cards on
       // the background
       body: Stack(
@@ -47,10 +48,16 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 padding: EdgeInsets.only(top: 50),
                 child: PopupMenuButton(
+                  color: Colors.grey[500],
                   itemBuilder: (_) => [
                     PopupMenuItem(
                       child: FlatButton(
-                        child: Text('Logout'),
+                        color: Colors.grey[500],
+                        child: Text('Logout',
+                            style: TextStyle(
+                                color: dark() == 1
+                                    ? Colors.white
+                                    : Colors.black54)),
                         onPressed: () {
                           Navigator.of(context).pushReplacementNamed('/');
                         },
@@ -81,9 +88,12 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Text('Search'),
           ),
           BottomNavigationBarItem(
-            icon: GestureDetector(child: Icon(Icons.library_books),onTap: (){
-              Navigator.of(context).pushNamed(UserLibrary.routeName);
-            },),
+            icon: GestureDetector(
+              child: Icon(Icons.library_books),
+              onTap: () {
+                Navigator.of(context).pushNamed(UserLibrary.routeName);
+              },
+            ),
             title: Text('My Library'),
           ),
           BottomNavigationBarItem(

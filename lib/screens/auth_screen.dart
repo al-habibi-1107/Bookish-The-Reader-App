@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../main.dart';
 import '../widgets/auth_card.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -33,7 +33,9 @@ class _AuthScreenState extends State<AuthScreen> {
             // The second half of the background ( 60% of the device size)
             Container(
               height: _deviceHeight * 0.60,
-              color: Colors.blueGrey.withOpacity(0.3),
+              color: dark() == 1
+                  ? Colors.black.withOpacity(0.3)
+                  : Colors.white.withOpacity(0.3),
             )
           ],
         ),
@@ -47,7 +49,6 @@ class _AuthScreenState extends State<AuthScreen> {
               padding: EdgeInsets.only(top: 140, left: 20),
               alignment: Alignment.topLeft,
               height: 250,
-              
             ),
             // Calling Authentication Card Widget - in widgets folder
             // Holds The design of the Authentication Card
