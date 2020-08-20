@@ -2,7 +2,7 @@ import 'package:bookish/helpers/db_helper.dart';
 import 'package:flutter/material.dart';
 
 import './book.dart';
-import '../models/books.dart';
+import '../models/books.dart'; 
 
 class Cart with ChangeNotifier {
   List<Book> _cartItem = [];
@@ -19,7 +19,7 @@ class Cart with ChangeNotifier {
       return Books().getBookById(item['bookId']);
     }).toList();
 
-
+   notifyListeners();
   }
 
   void addBook(int bookId, String user) {
