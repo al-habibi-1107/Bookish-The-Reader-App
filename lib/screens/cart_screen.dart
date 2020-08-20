@@ -23,7 +23,7 @@ class CartScreen extends StatelessWidget {
     }
     return Scaffold(
       backgroundColor:
-          dark() == 1 ? Color.fromRGBO(101, 119, 134, 0.8) : Colors.grey[50],
+          dark == 1 ? Color.fromRGBO(101, 119, 134, 0.8) : Colors.grey[50],
       body: Container(
         padding: EdgeInsets.only(
           top: 50,
@@ -37,7 +37,7 @@ class CartScreen extends StatelessWidget {
               child: IconButton(
                 icon: Icon(
                   Icons.clear,
-                  color: dark() == 1 ? Colors.white : Colors.grey[600],
+                  color: dark == 1 ? Colors.white : Colors.grey[600],
                 ),
                 onPressed: () => Navigator.of(context).pop(),
               ),
@@ -55,13 +55,13 @@ class CartScreen extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: dark() == 1 ? Colors.white : Colors.grey[800]),
+                        color: dark == 1 ? Colors.white : Colors.grey[800]),
                   ),
                   SizedBox(height: 9),
                   Text(
                     'A Total Of ${cart.cartItem.length} items',
                     style: TextStyle(
-                        color: dark() == 1 ? Colors.white54 : Colors.grey[50]),
+                        color: dark == 1 ? Colors.white54 : Colors.grey[50]),
                   )
                 ],
               ),
@@ -75,7 +75,7 @@ class CartScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 15,
                             color:
-                                dark() == 1 ? Colors.white54 : Colors.grey[800],
+                                dark == 1 ? Colors.white54 : Colors.grey[800],
                           ))
                     ]))
                   : Expanded(
@@ -132,7 +132,7 @@ class CartScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                        color: dark() == 1
+                        color: dark == 1
                             ? Color.fromRGBO(101, 119, 134, 0.8)
                             : Colors.grey[50],
                         offset: Offset(2, 3))

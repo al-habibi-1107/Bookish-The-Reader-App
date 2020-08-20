@@ -90,7 +90,7 @@ class _AuthCardState extends State<AuthCard> {
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Card(
-        color: dark() == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.grey[50],
+        color: dark == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.grey[50],
         margin: EdgeInsets.all(15),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25),
@@ -127,7 +127,7 @@ class _AuthCardState extends State<AuthCard> {
                         ),
                       ),
                       textColor: _isLogin
-                          ? (dark() == 1 ? Colors.white : Colors.black54)
+                          ? (dark == 1 ? Colors.white : Colors.black54)
                           : Colors.grey[400],
                     ),
                     FlatButton(
@@ -149,7 +149,7 @@ class _AuthCardState extends State<AuthCard> {
                         ),
                       ),
                       textColor: !_isLogin
-                          ? (dark() == 1 ? Colors.white : Colors.black54)
+                          ? (dark == 1 ? Colors.white : Colors.black54)
                           : Colors.grey[400],
                     ),
                   ],
@@ -158,17 +158,17 @@ class _AuthCardState extends State<AuthCard> {
                 if (!_isLogin)
                   TextFormField(
                     style: TextStyle(
-                      color: (dark() == 1 ? Colors.white : Colors.black54),
+                      color: (dark == 1 ? Colors.white : Colors.black54),
                     ),
                     key: ValueKey('username'),
                     decoration: InputDecoration(
                       labelText: 'Username',
                       labelStyle: TextStyle(
                           color:
-                              (dark() == 1 ? Colors.white60 : Colors.black54)),
+                              (dark == 1 ? Colors.white60 : Colors.black54)),
                       icon: Icon(Icons.perm_identity,
                           color:
-                              (dark() == 1 ? Colors.white70 : Colors.black54)),
+                              (dark == 1 ? Colors.white70 : Colors.black54)),
                     ),
                     validator: (value) {
                       if (value.isEmpty || value.length < 5) {
@@ -182,16 +182,16 @@ class _AuthCardState extends State<AuthCard> {
                   ),
                 TextFormField(
                   style: TextStyle(
-                    color: (dark() == 1 ? Colors.white : Colors.black54),
+                    color: (dark == 1 ? Colors.white : Colors.black54),
                   ),
                   key: ValueKey('email'),
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: 'Email',
                     labelStyle: TextStyle(
-                        color: (dark() == 1 ? Colors.white60 : Colors.black54)),
+                        color: (dark == 1 ? Colors.white60 : Colors.black54)),
                     icon: Icon(Icons.mail,
-                        color: (dark() == 1 ? Colors.white70 : Colors.black54)),
+                        color: (dark == 1 ? Colors.white70 : Colors.black54)),
                   ),
                   validator: (value) {
                     if (value.isEmpty || !value.contains('@')) {
@@ -205,15 +205,15 @@ class _AuthCardState extends State<AuthCard> {
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: (dark() == 1 ? Colors.white : Colors.black54),
+                    color: (dark == 1 ? Colors.white : Colors.black54),
                   ),
                   key: ValueKey('password'),
                   decoration: InputDecoration(
                     labelText: 'Password',
                     labelStyle: TextStyle(
-                        color: (dark() == 1 ? Colors.white60 : Colors.black54)),
+                        color: (dark == 1 ? Colors.white60 : Colors.black54)),
                     icon: Icon(Icons.lock,
-                        color: (dark() == 1 ? Colors.white70 : Colors.black54)),
+                        color: (dark == 1 ? Colors.white70 : Colors.black54)),
                   ),
                   obscureText: true,
                   validator: (value) {

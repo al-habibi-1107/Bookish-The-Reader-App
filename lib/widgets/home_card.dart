@@ -12,7 +12,7 @@ class HomeCard extends StatelessWidget {
     final books = Provider.of<Books>(context).books;
     // Card with rounded side borders
     return Card(
-      color: dark() == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.grey[50],
+      color: dark == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.grey[50],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -36,7 +36,7 @@ class HomeCard extends StatelessWidget {
               textAlign: TextAlign.left,
               style: TextStyle(
                   fontSize: 28,
-                  color: (dark() == 1 ? Colors.white : Colors.black54),
+                  color: (dark == 1 ? Colors.white : Colors.black54),
                   fontFamily: 'PlayfairDisplay-Italic'),
             ),
             SizedBox(
@@ -46,7 +46,7 @@ class HomeCard extends StatelessWidget {
               'Hunt new books before other bookworms do it..',
               style: TextStyle(
                 fontSize: 12,
-                color: (dark() == 1 ? Colors.white60 : Colors.black54),
+                color: (dark == 1 ? Colors.white60 : Colors.black54),
               ),
             ),
             SizedBox(
@@ -60,7 +60,7 @@ class HomeCard extends StatelessWidget {
                 itemBuilder: (ctx, index) {
                   return Container(
                     width: 110,
-                    color: dark() == 1
+                    color: dark == 1
                         ? Color.fromRGBO(101, 119, 134, 1)
                         : Colors.grey[50],
                     margin: EdgeInsets.all(10),
@@ -92,7 +92,7 @@ class HomeCard extends StatelessWidget {
                             books[index].author,
                             style: TextStyle(
                               fontSize: 12,
-                              color: (dark() == 1
+                              color: (dark == 1
                                   ? Colors.white60
                                   : Colors.black54),
                             ),
@@ -103,7 +103,7 @@ class HomeCard extends StatelessWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color:
-                                  (dark() == 1 ? Colors.white : Colors.black54),
+                                  (dark == 1 ? Colors.white : Colors.black54),
                             ),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,

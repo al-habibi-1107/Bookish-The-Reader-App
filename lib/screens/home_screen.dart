@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       backgroundColor:
-          dark() == 1 ? Color.fromRGBO(170, 184, 194, 1) : Colors.grey[50],
+          dark == 1 ? Color.fromRGBO(170, 184, 194, 1) : Colors.grey[50],
       // Stack - To stack the List of cards on
       // the background
       body: Stack(
@@ -48,21 +48,33 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 padding: EdgeInsets.only(top: 50),
                 child: PopupMenuButton(
-                  color: Colors.grey[500],
+                  color: dark == 1 ? Colors.grey : Colors.white,
                   itemBuilder: (_) => [
                     PopupMenuItem(
                       child: FlatButton(
-                        color: Colors.grey[500],
+                        color: dark == 1 ? Colors.grey[500] : Colors.white,
                         child: Text('Logout',
                             style: TextStyle(
-                                color: dark() == 1
-                                    ? Colors.white
-                                    : Colors.black54)),
+                                color:
+                                    dark == 1 ? Colors.white : Colors.black54)),
                         onPressed: () {
                           Navigator.of(context).pushReplacementNamed('/');
                         },
                       ),
-                    )
+                    ),
+                    PopupMenuItem(
+                        child: FlatButton(
+                      onPressed: () {
+                        setState(() {
+                          switchDark();
+                        });
+                      },
+                      child: Text(
+                        'Switch Theme',
+                        style: TextStyle(
+                            color: dark == 1 ? Colors.grey[500] : Colors.white),
+                      ),
+                    )),
                   ],
                   icon: Icon(Icons.more_vert),
                 ),

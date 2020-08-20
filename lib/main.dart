@@ -63,7 +63,15 @@ class MyApp extends StatelessWidget {
 //night mode variable
 // dark = 1 >> night
 // dark = 0 >> day
-int dark() {
-  int dark = 1;
-  return dark;
+  int darkVal = 1;
+int  get dark {
+  return darkVal;
+}
+
+void switchDark(){
+ if(dark==1){
+   darkVal=0;
+ }else{
+   darkVal=1;
+ }
 }

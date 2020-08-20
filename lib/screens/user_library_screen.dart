@@ -19,7 +19,7 @@ class _UserLibraryState extends State<UserLibrary> {
 
     return Scaffold(
       backgroundColor:
-          dark() == 1 ? Color.fromRGBO(101, 119, 134, 0.8) : Colors.grey[50],
+          dark == 1 ? Color.fromRGBO(101, 119, 134, 0.8) : Colors.grey[50],
       body: Stack(
         children: <Widget>[
           //35% of device Size to fill with image
@@ -62,7 +62,7 @@ class _UserLibraryState extends State<UserLibrary> {
                             fit: BoxFit.contain,
                           ),
                     radius: 50,
-                    backgroundColor: dark() == 1 ? Colors.black : Colors.white,
+                    backgroundColor: dark == 1 ? Colors.black : Colors.white,
                   ),
                 ),
                 Row(
