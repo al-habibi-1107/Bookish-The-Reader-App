@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Text(
                         'Switch Theme',
                         style: TextStyle(
-                            color: dark == 1 ? Colors.grey[500] : Colors.white),
+                            color: dark == 1 ? Colors.white : Colors.black54),
                       ),
                     )),
                   ],
@@ -92,10 +92,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor:   dark == 1 ? Colors.black54 : Colors.white,
         type: BottomNavigationBarType.fixed,
         onTap: (index) => _selectPage(index),
         items: [
           BottomNavigationBarItem(
+            
             icon: Icon(Icons.search),
             title: Text('Search'),
           ),

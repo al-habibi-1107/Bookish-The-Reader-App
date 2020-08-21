@@ -55,6 +55,12 @@ class DBHelper {
     final db = await DBHelper.database();
     return db.query(table);
   }
+
+  static Future<void> removeCartItem(String table,int bookId)async{
+    final db= await database();
+    return db.delete(table,where: "bookId=?",whereArgs: [bookId]);
+
+  }
   //---------------------------- LIBRARY DATABASE --------------------------//
 
 
@@ -62,6 +68,12 @@ class DBHelper {
     final db = await database();
     return db.insert(table, data,conflictAlgorithm:ConflictAlgorithm.fail);
 
+  }
+
+  static Future<List<Map<String,Object>>> getLibraryData(String table)async{
+    final db = await database();
+    return db.query(table);
+    
   }
 
 

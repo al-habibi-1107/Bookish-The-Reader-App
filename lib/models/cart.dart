@@ -33,6 +33,7 @@ class Cart with ChangeNotifier {
   void removeBook(int bookId) {
     final Book currentBook =
         bookList.firstWhere((element) => element.bookId == bookId);
+        DBHelper.removeCartItem('cart', bookId );
     _cartItem.remove(currentBook);
     notifyListeners();
   }

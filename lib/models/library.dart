@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 
 import './book.dart';
+import './books.dart';
 
 
 class Library with ChangeNotifier {
@@ -10,7 +11,7 @@ class Library with ChangeNotifier {
 
   
 
-  final List<Book> _library = [
+  List<Book> _library = [
 
   ];
 
@@ -26,4 +27,13 @@ class Library with ChangeNotifier {
     });
     notifyListeners();
   }
+
+  void getBooks()async{
+   final database = await DBHelper.getLibraryData('library');
+   _library= database.map((item) {
+     return Books().getBookById(item['bookId']);
+   }).toList();
+  }
+
+  
 }

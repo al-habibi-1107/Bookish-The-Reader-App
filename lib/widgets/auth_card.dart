@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 import '../models/users.dart';
 import '../screens/home_screen.dart';
-
+import '../models/cart.dart';
 class AuthCard extends StatefulWidget {
   @override
   _AuthCardState createState() => _AuthCardState();
@@ -63,6 +63,7 @@ class _AuthCardState extends State<AuthCard> {
           print('login successful');
           Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
           Provider.of<Users>(context).setCurrentUser(_email);
+          Provider.of<Cart>(context).cartdatabase();
         } else {
           Scaffold.of(context).showSnackBar(
             // If credentials are not right

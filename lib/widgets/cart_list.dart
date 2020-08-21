@@ -40,6 +40,7 @@ class _CartListState extends State<CartList> {
           // code at /models/cart.dart so thta it removes
           // the book from the list of book in the cart
           widget.cart.removeBook(widget.cart.cartItem[widget.i].bookId);
+          widget.cart.cartdatabase();
         });
       },
       // The UI cofigurations are done below

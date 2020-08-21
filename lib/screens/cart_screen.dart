@@ -71,7 +71,7 @@ class CartScreen extends StatelessWidget {
               child: isEmpty
                   ? Center(
                       child: Column(children: [
-                      Image.asset('assets/empty_cart.png'),
+                      Image.asset('assets/empty_cart.png',),
                       Text('Your Cart is empty!!\n Add some books..',
                           style: TextStyle(
                             fontSize: 15,
