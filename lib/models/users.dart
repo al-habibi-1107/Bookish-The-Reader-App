@@ -7,6 +7,7 @@ import './user.dart';
 
 class Users with ChangeNotifier {
   String _currentUser='';
+  String _currentUsername='';
   List<User> _users = [
     User(
       username: 'adminname',
@@ -91,11 +92,16 @@ class Users with ChangeNotifier {
     }
     return false;
   }
-  void setCurrentUser(String user){
+  void setCurrentUser(String user,String userName){
     _currentUser=user;
+    _currentUsername=userName;
   }
 
   String getCurrentUser(){
     return _currentUser;
   }
+  String getCurrentUserName(){
+    return _currentUsername;
+  }
+
 }

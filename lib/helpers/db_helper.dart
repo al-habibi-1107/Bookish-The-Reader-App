@@ -21,6 +21,8 @@ class DBHelper {
       db.execute('CREATE TABLE cart(user TEXT ,bookId INTEGER)');
 
       db.execute('CREATE TABLE library(user TEXT,bookId INTEGER)');
+
+      db.execute('CREATE TABLE bucks(user TEXT,cash INTEGER)');
     }, version: 1);
   }
 
@@ -81,5 +83,6 @@ class DBHelper {
    return db.delete(table);
   }
 
+//-------------------------- User Currency-----------------------------------//
 
 }

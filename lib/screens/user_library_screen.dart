@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 import '../models/library.dart';
 
+
 class UserLibrary extends StatefulWidget {
   static const routeName = '/user-library';
 
@@ -11,12 +12,14 @@ class UserLibrary extends StatefulWidget {
 }
 
 class _UserLibraryState extends State<UserLibrary> {
+  
   bool isBoy = false;
   @override
   Widget build(BuildContext context) {
+  
     final deviceSize = MediaQuery.of(context).size.height;
     final libraryItem = Provider.of<Library>(context);
-
+   
     return Scaffold(
       backgroundColor:
           dark == 1 ? Color.fromRGBO(101, 119, 134, 0.8) : Colors.grey[50],
@@ -65,6 +68,7 @@ class _UserLibraryState extends State<UserLibrary> {
                     backgroundColor: dark == 1 ? Colors.black : Colors.white,
                   ),
                 ),
+                
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
