@@ -1,10 +1,12 @@
 import 'package:bookish/screens/cart_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 import '../main.dart';
 import '../widgets/home_card.dart';
-import '../models/cart.dart';
+
 import './user_library_screen.dart';
+import '../models/cart.dart';
+import '../models/users.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home-screen';
@@ -120,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
             title: GestureDetector(
               child: Text('Cart'),
               onTap: () {
-                Provider.of<Cart>(context).cartdatabase();
+                Cart().cartdatabase(Users().getCurrentUser());
                 Navigator.of(context).pushNamed(CartScreen.routname);
               },
             ),

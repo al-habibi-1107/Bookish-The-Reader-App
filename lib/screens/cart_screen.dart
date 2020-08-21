@@ -1,4 +1,5 @@
 import 'package:bookish/models/library.dart';
+import 'dart:async';
 import 'package:bookish/widgets/cart_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -97,6 +98,7 @@ class CartScreen extends StatelessWidget {
                 for (i = 0; i < cart.cartItem.length; i++) {
                   Provider.of<Library>(context).addtolib(cart.cartItem[i],currentUser);
                 }
+                
                 cart.clearCart();
               },
               child: Container(

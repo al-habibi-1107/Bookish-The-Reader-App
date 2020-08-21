@@ -28,12 +28,19 @@ class Library with ChangeNotifier {
     notifyListeners();
   }
 
-  void getBooks()async{
-   final database = await DBHelper.getLibraryData('library');
+  void getBooks(String user)async{
+   final database = await DBHelper.getLibraryData('library',user);
    _library= database.map((item) {
      return Books().getBookById(item['bookId']);
    }).toList();
   }
 
-  
+
+  // void clearLibrary()async{
+  //   final database= await DBHelper.clearLibrary('library');
+
+  // }
+
+
+
 }

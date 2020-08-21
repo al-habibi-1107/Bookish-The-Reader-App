@@ -48,12 +48,12 @@ class DBHelper {
 
   static Future<void> insertCart(String table, Map<String, Object> data) async {
     final db = await database();
-    db.insert(table, data, conflictAlgorithm: sql.ConflictAlgorithm.ignore);
+    db.insert(table, data, conflictAlgorithm: sql.ConflictAlgorithm.replace);
   }
 
-  static Future<List<Map<String, dynamic>>> getCartData(String table) async {
+  static Future<List<Map<String, dynamic>>> getCartData(String table,String user) async {
     final db = await DBHelper.database();
-    return db.query(table);
+    return db.query(table,where: "user=?",whereArgs: [user]);
   }
 
   static Future<void> removeCartItem(String table,int bookId)async{
@@ -70,10 +70,15 @@ class DBHelper {
 
   }
 
-  static Future<List<Map<String,Object>>> getLibraryData(String table)async{
+  static Future<List<Map<String,Object>>> getLibraryData(String table,String user)async{
     final db = await database();
-    return db.query(table);
+    return db.query(table,where:"user = ?",whereArgs: [user]);
     
+  }
+
+  static Future<void> clearLibrary(String table)async{
+    final db= await database();
+   return db.delete(table);
   }
 
 

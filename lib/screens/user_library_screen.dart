@@ -87,7 +87,10 @@ class _UserLibraryState extends State<UserLibrary> {
                       icon: Icon(Icons.pregnant_woman),
                       label: Text('Ms.BookWorm'),
                       color: Colors.pink,
-                    )
+                    ),
+                    // FloatingActionButton(onPressed:(){
+                    //   Provider.of<Library>(context).clearLibrary();
+                    // } ,)
                   ],
                 ),
                 SizedBox(height: 20),

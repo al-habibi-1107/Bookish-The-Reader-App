@@ -1,3 +1,4 @@
+import 'package:bookish/models/library.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../main.dart';
@@ -63,7 +64,8 @@ class _AuthCardState extends State<AuthCard> {
           print('login successful');
           Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
           Provider.of<Users>(context).setCurrentUser(_email);
-          Provider.of<Cart>(context).cartdatabase();
+          Provider.of<Cart>(context).cartdatabase(_email);
+          Provider.of<Library>(context).getBooks(_email);
         } else {
           Scaffold.of(context).showSnackBar(
             // If credentials are not right

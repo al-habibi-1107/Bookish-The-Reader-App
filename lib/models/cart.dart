@@ -13,8 +13,8 @@ class Cart with ChangeNotifier {
 
   List<Book> bookList = Books().books;
 
-  Future<void> cartdatabase()async{
-    final cartdb= await DBHelper.getCartData('cart');
+  Future<void> cartdatabase(String user)async{
+    final cartdb= await DBHelper.getCartData('cart',user);
     _cartItem= cartdb.map((item) {
       return Books().getBookById(item['bookId']);
     }).toList();
@@ -23,6 +23,7 @@ class Cart with ChangeNotifier {
   }
 
   void addBook(int bookId, String user) {
+
     final Book currentBook =
         bookList.firstWhere((element) => element.bookId == bookId);
     _cartItem.add(currentBook);

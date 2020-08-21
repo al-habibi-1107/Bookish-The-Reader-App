@@ -1,3 +1,4 @@
+import 'package:bookish/models/users.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../models/cart.dart';
@@ -40,7 +41,7 @@ class _CartListState extends State<CartList> {
           // code at /models/cart.dart so thta it removes
           // the book from the list of book in the cart
           widget.cart.removeBook(widget.cart.cartItem[widget.i].bookId);
-          widget.cart.cartdatabase();
+          widget.cart.cartdatabase(Users().getCurrentUser());
         });
       },
       // The UI cofigurations are done below
