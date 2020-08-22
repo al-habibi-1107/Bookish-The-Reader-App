@@ -85,4 +85,24 @@ class DBHelper {
 
 //-------------------------- User Currency-----------------------------------//
 
+ 
+static Future<void> insertBucks(String table,Map<String,Object> data)async{
+
+final database= await DBHelper.database();
+return database.insert(table, data);
+
+}
+
+static Future<List<Map<String,Object>>> getUserBucks(String table,String user)async{
+  final database= await DBHelper.database();
+  return database.query(table,where:"user=?",whereArgs:[user]);
+}
+
+static Future<void> transaction(String table,String user,double amount)async{
+final db= await DBHelper.database();
+return db.update(table, {'cash':amount},where: "user=?",whereArgs: [user]);
+}
+
+
+
 }

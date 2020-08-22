@@ -13,12 +13,9 @@ class Users with ChangeNotifier {
       username: 'adminname',
       password: 'adminname',
       email: 'admin@admin.com',
+      bucks: 100,
     ),
-    User(
-      username: 'testusername',
-      password: 'testpassword',
-      email: 'testemail@test.com',
-    )
+    
   ];
 
   List<User> get users {
@@ -103,5 +100,26 @@ class Users with ChangeNotifier {
   String getCurrentUserName(){
     return _currentUsername;
   }
+
+  Future<void> setInitialBucks(String user)async{
+    DBHelper.insertBucks('bucks', {
+      'user':user,
+      'cash':100
+    });
+
+  }
+
+  Future<void> setUserBucks(User user)async{
+    final db= await DBHelper.getUserBucks('bucks', user.username);
+     db.map((item){
+       user.bucks=item['cash'];
+     });
+
+    
+  }
+
+
+
+
 
 }
