@@ -67,6 +67,7 @@ class _AuthCardState extends State<AuthCard> {
           Provider.of<Users>(context).setCurrentUser(_email,_userName);
           Provider.of<Cart>(context).cartdatabase(_email);
           Provider.of<Library>(context).getBooks(_email);
+          Provider.of<Users>(context).setUserBucks(_email);
         } else {
           Scaffold.of(context).showSnackBar(
             // If credentials are not right

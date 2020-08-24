@@ -1,5 +1,6 @@
 import 'package:bookish/screens/cart_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
 import '../widgets/home_card.dart';
@@ -16,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
   int currentIndex = 0;
   void _selectPage(int index) {
     setState(() {
@@ -25,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bucks= Provider.of<Users>(context).bucks;
     final deviceSize = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -40,6 +43,24 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Image.asset(
               'assets/book.jpg',
               fit: BoxFit.contain,
+            ),
+          ),
+          Positioned(
+            top: deviceSize * 0.05,
+            left: 35,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.yellow,
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(color: Colors.black)),
+              height: 40,
+              width: 90,
+              child: Row(children: <Widget>[
+                CircleAvatar(
+                  backgroundColor: Colors.green,
+                ),
+                Text('$bucks'),
+              ],),
             ),
           ),
           // Stack Level 2
@@ -94,12 +115,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor:   dark == 1 ? Colors.black54 : Colors.white,
+        backgroundColor: dark == 1 ? Colors.black54 : Colors.white,
         type: BottomNavigationBarType.fixed,
         onTap: (index) => _selectPage(index),
         items: [
           BottomNavigationBarItem(
-            
             icon: Icon(Icons.search),
             title: Text('Search'),
           ),

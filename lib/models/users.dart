@@ -6,8 +6,9 @@ import './user.dart';
 // ChangeNotifier enables provider to be accessible
 
 class Users with ChangeNotifier {
-  String _currentUser='';
-  String _currentUsername='';
+  String _currentUser = '';
+  String _currentUsername = '';
+  double _bucks=0;
   List<User> _users = [
     User(
       username: 'adminname',
@@ -15,7 +16,6 @@ class Users with ChangeNotifier {
       email: 'admin@admin.com',
       bucks: 100,
     ),
-    
   ];
 
   List<User> get users {
@@ -27,7 +27,7 @@ class Users with ChangeNotifier {
 
   Future<bool> addUser(String uname, String password, String email) async {
     bool _isPresent = false;
-    
+
     final database = await DBHelper.getData('users');
     _users = database
         .map(
@@ -48,9 +48,9 @@ class Users with ChangeNotifier {
     if (_isPresent) {
       print('do not sign up');
       return false;
-    }else{
+    } else {
       DBHelper.insert(
-        'users', {'username': uname, 'email': email, 'password': password});
+          'users', {'username': uname, 'email': email, 'password': password});
     }
     _users.add(
       User(
@@ -89,37 +89,44 @@ class Users with ChangeNotifier {
     }
     return false;
   }
-  void setCurrentUser(String user,String userName){
-    _currentUser=user;
-    _currentUsername=userName;
-  }
 
-  String getCurrentUser(){
-    return _currentUser;
-  }
-  String getCurrentUserName(){
-    return _currentUsername;
-  }
-
-  Future<void> setInitialBucks(String user)async{
-    DBHelper.insertBucks('bucks', {
-      'user':user,
-      'cash':100
-    });
-
-  }
-
-  Future<void> setUserBucks(User user)async{
-    final db= await DBHelper.getUserBucks('bucks', user.username);
-     db.map((item){
-       user.bucks=item['cash'];
-     });
-
+  void setCurrentUser(String user, String userName,) {
+    _currentUser = user;
+    _currentUsername = userName;
     
   }
 
+  String getCurrentUser() {
+    return _currentUser;
+  }
+
+  String getCurrentUserName() {
+    return _currentUsername;
+  }
+
+  Future<void> setInitialBucks(String user) async {
+    DBHelper.insertBucks('bucks', {'user': user, 'cash': 100});
+    _bucks=100;
+    notifyListeners();
+  }
+
+  Future<void> setUserBucks(String user) async {
+
+    final userName= _users.firstWhere((element) => element.email==user);
+    print(userName.email);
 
 
-
-
+    final db = await DBHelper.getUserBucks('bucks', userName.username);
+    db.map((item) {
+      print(item['cash']);
+      userName.bucks = item['cash'];
+    });
+    _bucks=userName.bucks;
+    notifyListeners();
+  }
+  double get bucks{
+    return _bucks;
+   
+  }
+  
 }
