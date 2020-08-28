@@ -5,7 +5,7 @@ class User {
   final String username;
   final String email;
   final String password;
-   double bucks;
+   num bucks;
   User({
     @required this.username,
     @required this.password,

@@ -22,7 +22,7 @@ class DBHelper {
 
       db.execute('CREATE TABLE library(user TEXT,bookId INTEGER)');
 
-      db.execute('CREATE TABLE bucks(user TEXT,cash INTEGER)');
+      db.execute('CREATE TABLE bucks(user TEXT,cash REAL)');
     }, version: 1);
   }
 
@@ -95,7 +95,7 @@ return database.insert(table, data);
 
 static Future<List<Map<String,Object>>> getUserBucks(String table,String user)async{
   final database= await DBHelper.database();
-  return database.query(table,where:"user=?",whereArgs:[user]);
+  return database.query(table,where:"user = ?",whereArgs:[user]);
 }
 
 static Future<void> transaction(String table,String user,double amount)async{

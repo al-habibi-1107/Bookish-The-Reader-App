@@ -163,10 +163,11 @@ class _AuthCardState extends State<AuthCard> {
                 if (!_isLogin)
                   TextFormField(
                     style: TextStyle(
-                      color: (dark == 1 ? Colors.white : Colors.black54),
+                      color: (dark == 1 ? Colors.white : Colors.black),
                     ),
                     key: ValueKey('username'),
                     decoration: InputDecoration(
+                      
                       labelText: 'Username',
                       labelStyle: TextStyle(
                           color:
@@ -187,7 +188,7 @@ class _AuthCardState extends State<AuthCard> {
                   ),
                 TextFormField(
                   style: TextStyle(
-                    color: (dark == 1 ? Colors.white : Colors.black54),
+                    color: (dark == 1 ? Colors.white : Colors.black),
                   ),
                   key: ValueKey('email'),
                   keyboardType: TextInputType.emailAddress,
@@ -210,7 +211,7 @@ class _AuthCardState extends State<AuthCard> {
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: (dark == 1 ? Colors.white : Colors.black54),
+                    color: (dark == 1 ? Colors.white : Colors.black),
                   ),
                   key: ValueKey('password'),
                   decoration: InputDecoration(

@@ -116,15 +116,15 @@ class Users with ChangeNotifier {
     print(userName.email);
 
 
-    final db = await DBHelper.getUserBucks('bucks', userName.username);
-    db.map((item) {
-      print(item['cash']);
-      userName.bucks = item['cash'];
+    final db = await DBHelper.getUserBucks('bucks', userName.email);
+    db.forEach((element) { 
+      userName.bucks=element['cash'];
     });
     _bucks=userName.bucks;
     notifyListeners();
   }
   double get bucks{
+    print(_bucks);
     return _bucks;
    
   }
