@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 import '../models/library.dart';
 
+// This has the details for
+// The user library screen, which contains the purchased books 
+// Redirected from the cart screen
 
 class UserLibrary extends StatefulWidget {
   static const routeName = '/user-library';
@@ -53,6 +56,7 @@ class _UserLibraryState extends State<UserLibrary> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     }),
+                    // Contains the switch between the user image
                 Center(
                   child: CircleAvatar(
                     child: isBoy
@@ -92,12 +96,12 @@ class _UserLibraryState extends State<UserLibrary> {
                       label: Text('Ms.BookWorm'),
                       color: Colors.pink,
                     ),
-                    // FloatingActionButton(onPressed:(){
-                    //   Provider.of<Library>(context).clearLibrary();
-                    // } ,)
+                    
                   ],
                 ),
                 SizedBox(height: 20),
+                // Gives the grid view of the books available on the 
+                // user library
                 Expanded(
                   child: GridView.builder(
                     itemCount: libraryItem.library.length,

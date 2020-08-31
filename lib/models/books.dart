@@ -53,6 +53,7 @@ class Books with ChangeNotifier {
     return _books;
   }
 
+  // This function is to find a book by the bookid given
   Book getBookById(int bookId){
     return _books.firstWhere((element) => element.bookId==bookId);
   }

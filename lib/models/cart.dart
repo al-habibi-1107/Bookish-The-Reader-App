@@ -13,6 +13,9 @@ class Cart with ChangeNotifier {
 
   List<Book> bookList = Books().books;
 
+
+
+  // Get the data of the cart by the user from the database
   Future<void> cartdatabase(String user)async{
     final cartdb= await DBHelper.getCartData('cart',user);
     _cartItem= cartdb.map((item) {
@@ -21,6 +24,8 @@ class Cart with ChangeNotifier {
 
    notifyListeners();
   }
+
+  // Add the book passed into the user database
 
   void addBook(int bookId, String user) {
 
@@ -31,6 +36,8 @@ class Cart with ChangeNotifier {
     notifyListeners();
   }
 
+  // Function ot remove a book from the cart
+  // Remove also from the database
   void removeBook(int bookId) {
     final Book currentBook =
         bookList.firstWhere((element) => element.bookId == bookId);
@@ -39,6 +46,8 @@ class Cart with ChangeNotifier {
     notifyListeners();
   }
 
+  // Calculate the total price 
+  // calculated the total price for elements in the cart
   double totalPrice() {
     double total = 0;
     _cartItem.forEach((element) {
@@ -47,6 +56,7 @@ class Cart with ChangeNotifier {
     return total;
   }
 
+  // clear cart elements
   void clearCart() {
     _cartItem = [];
   }

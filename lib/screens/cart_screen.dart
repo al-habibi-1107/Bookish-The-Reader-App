@@ -19,6 +19,8 @@ class CartScreen extends StatelessWidget {
     // To access the total price method at cart.dart
     final total = cart.totalPrice();
 
+    final currentUser= Provider.of<Users>(context).getCurrentUser();
+
     bool isEmpty = false;
     if (cart.cartItem.length == 0) {
       isEmpty = true;
@@ -41,7 +43,12 @@ class CartScreen extends StatelessWidget {
                   Icons.clear,
                   color: dark == 1 ? Colors.white : Colors.grey[600],
                 ),
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Provider.of<Users>(context).setUserBucks(currentUser);
+
+                } 
+                  
               ),
             ),
             SizedBox(
@@ -72,7 +79,9 @@ class CartScreen extends StatelessWidget {
               child: isEmpty
                   ? Center(
                       child: Column(children: [
-                      Image.asset('assets/empty_cart.png',),
+                      Image.asset(
+                        'assets/empty_cart.png',
+                      ),
                       Text('Your Cart is empty!!\n Add some books..',
                           style: TextStyle(
                             fontSize: 15,
@@ -93,11 +102,14 @@ class CartScreen extends StatelessWidget {
             // The bottom Button
             GestureDetector(
               onTap: () {
-               final currentUser=Provider.of<Users>(context).getCurrentUser();
+                final currentUser =
+                    Provider.of<Users>(context).getCurrentUser();
                 int i = 0;
                 for (i = 0; i < cart.cartItem.length; i++) {
-                  Provider.of<Library>(context).addtolib(cart.cartItem[i],currentUser);
+                  Provider.of<Library>(context)
+                      .addtolib(cart.cartItem[i], currentUser);
                 }
+                Provider.of<Users>(context).transaction(total);
                 
                 cart.clearCart();
               },

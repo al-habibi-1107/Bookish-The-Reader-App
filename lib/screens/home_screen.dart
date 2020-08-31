@@ -45,6 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
               fit: BoxFit.contain,
             ),
           ),
+          // This is the top icon showing the current
+          // Users bucks in the wallet
           Positioned(
             top: deviceSize * 0.05,
             left: 35,
@@ -69,10 +71,13 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               Container(
+                // Contains the code for the drop down
+                // menu on the top right
                 padding: EdgeInsets.only(top: 50),
                 child: PopupMenuButton(
                   color: dark == 1 ? Colors.grey : Colors.white,
                   itemBuilder: (_) => [
+                    // Logs out the user and lands to the login/signup page
                     PopupMenuItem(
                       child: FlatButton(
                         color: dark == 1 ? Colors.grey[500] : Colors.white,
@@ -85,6 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                     ),
+                    // Switches the app mode to dark mode on one tap
+                    // And even switches to light mode 
+                    // on tap again
                     PopupMenuItem(
                         child: FlatButton(
                       onPressed: () {
@@ -114,6 +122,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+
+      // This code is for the bottom navigation ba
+      // The properties (index, current page) are configured 
+      // For the color and transitions for the navigation
+      // bar icons
+      
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: dark == 1 ? Colors.black54 : Colors.white,
         type: BottomNavigationBarType.fixed,

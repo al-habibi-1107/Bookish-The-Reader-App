@@ -129,4 +129,15 @@ class Users with ChangeNotifier {
    
   }
   
+
+  Future<void> transaction(double amount,)async{
+    print(_currentUser);
+    amount=_bucks-amount;
+    DBHelper.transaction('bucks', _currentUser, amount);
+    notifyListeners();
+  }
+
+
+
+
 }

@@ -19,6 +19,8 @@ class Library with ChangeNotifier {
     return _library;
   }
 
+
+  // add the book to the library database 
   void addtolib(Book books,String user) {
     _library.add(books);
     DBHelper.insertLibrary('library', {
@@ -28,18 +30,13 @@ class Library with ChangeNotifier {
     notifyListeners();
   }
 
+// Function to get all the data of the library from the database
   void getBooks(String user)async{
    final database = await DBHelper.getLibraryData('library',user);
    _library= database.map((item) {
      return Books().getBookById(item['bookId']);
    }).toList();
   }
-
-
-  // void clearLibrary()async{
-  //   final database= await DBHelper.clearLibrary('library');
-
-  // }
 
 
 

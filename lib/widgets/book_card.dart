@@ -185,6 +185,9 @@ class _BookCardState extends State<BookCard> {
             ),
           ),
           SizedBox(height: 20),
+          // A button to add the current book to cart 
+          // Also has an animation which triggers when 
+          // The button is pressed
           GestureDetector(
             onTap: () {
               Provider.of<Cart>(context)
