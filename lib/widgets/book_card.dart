@@ -190,9 +190,15 @@ class _BookCardState extends State<BookCard> {
           // The button is pressed
           GestureDetector(
             onTap: () {
+              bool isPresent= Provider.of<Cart>(context).isInCart(widget.currentBook.bookId);
+              print(isPresent);
+              if(isPresent){
+                Scaffold.of(context).showSnackBar(SnackBar(content: Text('Book Already in cart'),),);
+              }else{
               Provider.of<Cart>(context)
                   .addBook(widget.currentBook.bookId, widget.currentUser);
               _change(context);
+              }
             },
             child: AnimatedContainer(
               duration: Duration(seconds: 1),

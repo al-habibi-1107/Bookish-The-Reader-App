@@ -49,6 +49,8 @@ class _AuthCardState extends State<AuthCard> {
           );
         } else {
           // Else create a user with the given credentials
+          // Set the current user according to the signed up user
+          // Set initial bucks for the user as 100
           print('signup sucessful');
           Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
           Provider.of<Users>(context,listen: false).setCurrentUser(_email,_userName);
@@ -63,6 +65,12 @@ class _AuthCardState extends State<AuthCard> {
             await Provider.of<Users>(context).isAuth(_password, _email);
         if (login) {
           print('login successful');
+          // On successful login of user
+          // change to the homepage 
+          // set the current user as the user who logged in
+          // Get the data from database of the cart according to the current logged in user
+          // Get the books from the database
+          // get the data of the bucks based on the logged in user
           Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
           Provider.of<Users>(context).setCurrentUser(_email,_userName);
           Provider.of<Cart>(context).cartdatabase(_email);

@@ -2,7 +2,7 @@ import 'package:bookish/helpers/db_helper.dart';
 import 'package:flutter/material.dart';
 
 import './book.dart';
-import '../models/books.dart'; 
+import '../models/books.dart';
 
 class Cart with ChangeNotifier {
   List<Book> _cartItem = [];
@@ -13,22 +13,19 @@ class Cart with ChangeNotifier {
 
   List<Book> bookList = Books().books;
 
-
-
   // Get the data of the cart by the user from the database
-  Future<void> cartdatabase(String user)async{
-    final cartdb= await DBHelper.getCartData('cart',user);
-    _cartItem= cartdb.map((item) {
+  Future<void> cartdatabase(String user) async {
+    final cartdb = await DBHelper.getCartData('cart', user);
+    _cartItem = cartdb.map((item) {
       return Books().getBookById(item['bookId']);
     }).toList();
 
-   notifyListeners();
+    notifyListeners();
   }
 
   // Add the book passed into the user database
 
   void addBook(int bookId, String user) {
-
     final Book currentBook =
         bookList.firstWhere((element) => element.bookId == bookId);
     _cartItem.add(currentBook);
@@ -41,12 +38,12 @@ class Cart with ChangeNotifier {
   void removeBook(int bookId) {
     final Book currentBook =
         bookList.firstWhere((element) => element.bookId == bookId);
-        DBHelper.removeCartItem('cart', bookId );
+    DBHelper.removeCartItem('cart', bookId);
     _cartItem.remove(currentBook);
     notifyListeners();
   }
 
-  // Calculate the total price 
+  // Calculate the total price
   // calculated the total price for elements in the cart
   double totalPrice() {
     double total = 0;
@@ -59,5 +56,21 @@ class Cart with ChangeNotifier {
   // clear cart elements
   void clearCart() {
     _cartItem = [];
+  }
+
+
+  // Checks if the book we are trying to add
+  // is already present in the cart
+  bool isInCart(int bookId) {
+    print(bookId);
+    bool ispresent = false;
+    _cartItem.forEach(
+      (element) {
+        if (element.bookId == bookId) {
+          ispresent = true;
+        }
+      },
+    );
+    return ispresent;
   }
 }

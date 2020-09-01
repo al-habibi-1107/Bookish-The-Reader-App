@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Bookish',
         // Authorisation Screen - HomePage of the app
         // email - admin@admin.com

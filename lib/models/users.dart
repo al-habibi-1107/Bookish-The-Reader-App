@@ -90,6 +90,7 @@ class Users with ChangeNotifier {
     return false;
   }
 
+  // Sets the current user as logged in user
   void setCurrentUser(String user, String userName,) {
     _currentUser = user;
     _currentUsername = userName;
@@ -104,12 +105,16 @@ class Users with ChangeNotifier {
     return _currentUsername;
   }
 
+  // for each signup sets the initial value of bucks
+  // and enters it to the database
   Future<void> setInitialBucks(String user) async {
     DBHelper.insertBucks('bucks', {'user': user, 'cash': 100});
     _bucks=100;
     notifyListeners();
   }
 
+  // for each login , gets the data of the user
+  // and sets the bucks respectively
   Future<void> setUserBucks(String user) async {
 
     final userName= _users.firstWhere((element) => element.email==user);
@@ -124,12 +129,13 @@ class Users with ChangeNotifier {
     notifyListeners();
   }
   double get bucks{
-    print(_bucks);
+   
     return _bucks;
    
   }
   
-
+// Handles the transactions done 
+// ie the books purchased 
   Future<void> transaction(double amount,)async{
     print(_currentUser);
     amount=_bucks-amount;
