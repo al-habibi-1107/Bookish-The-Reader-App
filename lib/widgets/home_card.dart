@@ -36,7 +36,7 @@ class HomeCard extends StatelessWidget {
               textAlign: TextAlign.left,
               style: TextStyle(
                   fontSize: 28,
-                  color: (dark == 1 ? Colors.white : Colors.black54),
+                  color: (dark == 1 ? Colors.white : Colors.black),
                   fontFamily: 'PlayfairDisplay-Italic'),
             ),
             SizedBox(
@@ -46,7 +46,7 @@ class HomeCard extends StatelessWidget {
               'Hunt new books before other bookworms do it..',
               style: TextStyle(
                 fontSize: 12,
-                color: (dark == 1 ? Colors.white60 : Colors.black54),
+                color: (dark == 1 ? Colors.white60 : Colors.black),
               ),
             ),
             SizedBox(

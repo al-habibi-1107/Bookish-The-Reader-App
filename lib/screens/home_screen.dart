@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.circular(30),
                   border: Border.all(color: Colors.blueGrey[100])),
               height: 40,
-              width: 100,
+              width: 90,
               child: Row(
                 children: <Widget>[
                   CircleAvatar(
@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     backgroundColor: Colors.yellow,
                   ),
                   Text(
-                    '\t$bucks',
+                    '\t${bucks.round()}',
                     style: TextStyle(fontSize: 20),
                   ),
                 ],

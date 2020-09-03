@@ -1,3 +1,4 @@
+import 'package:bookish/widgets/book_pdf.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -50,7 +51,9 @@ class MyApp extends StatelessWidget {
           // CartScreen - Contains all items added to cart
           CartScreen.routname: (ctx) => CartScreen(),
           // UserLibrary - Contains the purchased books
-          UserLibrary.routeName: (ctx) => UserLibrary()
+          UserLibrary.routeName: (ctx) => UserLibrary(),
+          PdfView.routeName: (ctx)=> PdfView(),
+
         },
         
       ),

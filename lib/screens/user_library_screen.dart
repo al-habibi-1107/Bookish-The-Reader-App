@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../main.dart';
 import '../models/library.dart';
+import '../widgets/book_pdf.dart';
 
 // This has the details for
-// The user library screen, which contains the purchased books 
+// The user library screen, which contains the purchased books
 // Redirected from the cart screen
 
 class UserLibrary extends StatefulWidget {
@@ -15,14 +16,12 @@ class UserLibrary extends StatefulWidget {
 }
 
 class _UserLibraryState extends State<UserLibrary> {
-  
   bool isBoy = false;
   @override
   Widget build(BuildContext context) {
-  
     final deviceSize = MediaQuery.of(context).size.height;
     final libraryItem = Provider.of<Library>(context);
-   
+
     return Scaffold(
       backgroundColor:
           dark == 1 ? Color.fromRGBO(101, 119, 134, 0.8) : Colors.grey[50],
@@ -56,7 +55,7 @@ class _UserLibraryState extends State<UserLibrary> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     }),
-                    // Contains the switch between the user image
+                // Contains the switch between the user image
                 Center(
                   child: CircleAvatar(
                     child: isBoy
@@ -72,7 +71,7 @@ class _UserLibraryState extends State<UserLibrary> {
                     backgroundColor: dark == 1 ? Colors.black : Colors.white,
                   ),
                 ),
-                
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
@@ -96,11 +95,10 @@ class _UserLibraryState extends State<UserLibrary> {
                       label: Text('Ms.BookWorm'),
                       color: Colors.pink,
                     ),
-                    
                   ],
                 ),
                 SizedBox(height: 20),
-                // Gives the grid view of the books available on the 
+                // Gives the grid view of the books available on the
                 // user library
                 Expanded(
                   child: GridView.builder(
@@ -110,11 +108,16 @@ class _UserLibraryState extends State<UserLibrary> {
                         child: Card(
                           color: Colors.transparent,
                           elevation: 5,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: Image.network(
-                              libraryItem.library[i].imageUrl,
-                              fit: BoxFit.fill,
+                          child: GestureDetector(
+                            onTap: (){
+                              Navigator.of(context).pushNamed(PdfView.routeName,arguments: libraryItem.library[i]);
+                            },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: Image.network(
+                                libraryItem.library[i].imageUrl,
+                                fit: BoxFit.fill,
+                              ),
                             ),
                           ),
                         ),
