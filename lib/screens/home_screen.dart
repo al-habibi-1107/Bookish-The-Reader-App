@@ -17,7 +17,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
   int currentIndex = 0;
   void _selectPage(int index) {
     setState(() {
@@ -27,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bucks= Provider.of<Users>(context).bucks;
+    final bucks = Provider.of<Users>(context).bucks;
     final deviceSize = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -52,17 +51,29 @@ class _HomeScreenState extends State<HomeScreen> {
             left: 35,
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.yellow,
+                  color: Colors.white60,
                   borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color: Colors.black)),
+                  border: Border.all(color: Colors.blueGrey[100])),
               height: 40,
-              width: 90,
-              child: Row(children: <Widget>[
-                CircleAvatar(
-                  backgroundColor: Colors.green,
-                ),
-                Text('$bucks'),
-              ],),
+              width: 100,
+              child: Row(
+                children: <Widget>[
+                  CircleAvatar(
+                    child: Container(
+                      height: deviceSize * 0.35,
+                      child: Image.asset(
+                        'assets/bitcoin.png',
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ),
+                    backgroundColor: Colors.yellow,
+                  ),
+                  Text(
+                    '\t$bucks',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
             ),
           ),
           // Stack Level 2
@@ -91,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     // Switches the app mode to dark mode on one tap
-                    // And even switches to light mode 
+                    // And even switches to light mode
                     // on tap again
                     PopupMenuItem(
                         child: FlatButton(
@@ -124,10 +135,10 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
 
       // This code is for the bottom navigation ba
-      // The properties (index, current page) are configured 
+      // The properties (index, current page) are configured
       // For the color and transitions for the navigation
       // bar icons
-      
+
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: dark == 1 ? Colors.black54 : Colors.white,
         type: BottomNavigationBarType.fixed,

@@ -24,13 +24,11 @@ class BookScreen extends StatelessWidget {
               dark == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.grey[50],
           title: Text(
             currentBook.title,
-            style:
-                TextStyle(color: dark == 1 ? Colors.white : Colors.black54),
+            style: TextStyle(color: dark == 1 ? Colors.white : Colors.black54),
           ),
           content: Text(
             currentBook.desc,
-            style:
-                TextStyle(color: dark == 1 ? Colors.white : Colors.black54),
+            style: TextStyle(color: dark == 1 ? Colors.white : Colors.black54),
           ),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -39,8 +37,7 @@ class BookScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor:
-          dark == 1 ? Color.fromRGBO(101, 119, 134, 0.5) : Colors.grey[50],
+      backgroundColor: dark == 1 ? Colors.blueGrey[800] : Colors.grey[100],
       // For Stacking up the card and the book image
       body: Stack(
         children: <Widget>[
