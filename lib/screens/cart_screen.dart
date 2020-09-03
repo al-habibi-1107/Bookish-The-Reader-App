@@ -1,10 +1,12 @@
 import 'package:bookish/models/library.dart';
+
 import 'package:bookish/widgets/cart_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../main.dart';
 import '../models/cart.dart';
 import '../models/library.dart';
+import '../models/users.dart';
 
 class CartScreen extends StatelessWidget {
   static const routname = '/cart-screen';
@@ -17,13 +19,15 @@ class CartScreen extends StatelessWidget {
     // To access the total price method at cart.dart
     final total = cart.totalPrice();
 
+    final currentUser= Provider.of<Users>(context).getCurrentUser();
+
     bool isEmpty = false;
     if (cart.cartItem.length == 0) {
       isEmpty = true;
     }
     return Scaffold(
       backgroundColor:
-          dark() == 1 ? Color.fromRGBO(101, 119, 134, 0.8) : Colors.grey[50],
+          dark == 1 ? Color.fromRGBO(101, 119, 134, 0.8) : Colors.grey[50],
       body: Container(
         padding: EdgeInsets.only(
           top: 50,
@@ -37,9 +41,14 @@ class CartScreen extends StatelessWidget {
               child: IconButton(
                 icon: Icon(
                   Icons.clear,
-                  color: dark() == 1 ? Colors.white : Colors.grey[600],
+                  color: dark == 1 ? Colors.white : Colors.grey[600],
                 ),
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Provider.of<Users>(context).setUserBucks(currentUser);
+
+                } 
+                  
               ),
             ),
             SizedBox(
@@ -55,13 +64,13 @@ class CartScreen extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: dark() == 1 ? Colors.white : Colors.grey[800]),
+                        color: dark == 1 ? Colors.white : Colors.grey[800]),
                   ),
                   SizedBox(height: 9),
                   Text(
                     'A Total Of ${cart.cartItem.length} items',
                     style: TextStyle(
-                        color: dark() == 1 ? Colors.white54 : Colors.grey[50]),
+                        color: dark == 1 ? Colors.white54 : Colors.grey[50]),
                   )
                 ],
               ),
@@ -70,12 +79,14 @@ class CartScreen extends StatelessWidget {
               child: isEmpty
                   ? Center(
                       child: Column(children: [
-                      Image.asset('assets/empty_cart.png'),
+                      Image.asset(
+                        'assets/empty_cart.png',
+                      ),
                       Text('Your Cart is empty!!\n Add some books..',
                           style: TextStyle(
                             fontSize: 15,
                             color:
-                                dark() == 1 ? Colors.white54 : Colors.grey[800],
+                                dark == 1 ? Colors.white54 : Colors.grey[800],
                           ))
                     ]))
                   : Expanded(
@@ -91,10 +102,15 @@ class CartScreen extends StatelessWidget {
             // The bottom Button
             GestureDetector(
               onTap: () {
+                final currentUser =
+                    Provider.of<Users>(context).getCurrentUser();
                 int i = 0;
                 for (i = 0; i < cart.cartItem.length; i++) {
-                  Provider.of<Library>(context).addtolib(cart.cartItem[i]);
+                  Provider.of<Library>(context)
+                      .addtolib(cart.cartItem[i], currentUser);
                 }
+                Provider.of<Users>(context).transaction(total);
+                
                 cart.clearCart();
               },
               child: Container(
@@ -132,7 +148,7 @@ class CartScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                        color: dark() == 1
+                        color: dark == 1
                             ? Color.fromRGBO(101, 119, 134, 0.8)
                             : Colors.grey[50],
                         offset: Offset(2, 3))

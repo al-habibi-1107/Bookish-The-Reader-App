@@ -13,14 +13,17 @@ class Cart with ChangeNotifier {
 
   List<Book> bookList = Books().books;
 
-  Future<void> cartdatabase()async{
-    final cartdb= await DBHelper.getCartData('cart');
-    _cartItem= cartdb.map((item) {
+  // Get the data of the cart by the user from the database
+  Future<void> cartdatabase(String user) async {
+    final cartdb = await DBHelper.getCartData('cart', user);
+    _cartItem = cartdb.map((item) {
       return Books().getBookById(item['bookId']);
     }).toList();
 
-
+    notifyListeners();
   }
+
+  // Add the book passed into the user database
 
   void addBook(int bookId, String user) {
     final Book currentBook =
@@ -30,13 +33,18 @@ class Cart with ChangeNotifier {
     notifyListeners();
   }
 
+  // Function ot remove a book from the cart
+  // Remove also from the database
   void removeBook(int bookId) {
     final Book currentBook =
         bookList.firstWhere((element) => element.bookId == bookId);
+    DBHelper.removeCartItem('cart', bookId);
     _cartItem.remove(currentBook);
     notifyListeners();
   }
 
+  // Calculate the total price
+  // calculated the total price for elements in the cart
   double totalPrice() {
     double total = 0;
     _cartItem.forEach((element) {
@@ -45,7 +53,24 @@ class Cart with ChangeNotifier {
     return total;
   }
 
+  // clear cart elements
   void clearCart() {
     _cartItem = [];
+  }
+
+
+  // Checks if the book we are trying to add
+  // is already present in the cart
+  bool isInCart(int bookId) {
+    print(bookId);
+    bool ispresent = false;
+    _cartItem.forEach(
+      (element) {
+        if (element.bookId == bookId) {
+          ispresent = true;
+        }
+      },
+    );
+    return ispresent;
   }
 }

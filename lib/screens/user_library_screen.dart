@@ -3,6 +3,10 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 import '../models/library.dart';
 
+// This has the details for
+// The user library screen, which contains the purchased books 
+// Redirected from the cart screen
+
 class UserLibrary extends StatefulWidget {
   static const routeName = '/user-library';
 
@@ -11,15 +15,17 @@ class UserLibrary extends StatefulWidget {
 }
 
 class _UserLibraryState extends State<UserLibrary> {
+  
   bool isBoy = false;
   @override
   Widget build(BuildContext context) {
+  
     final deviceSize = MediaQuery.of(context).size.height;
     final libraryItem = Provider.of<Library>(context);
-
+   
     return Scaffold(
       backgroundColor:
-          dark() == 1 ? Color.fromRGBO(101, 119, 134, 0.8) : Colors.grey[50],
+          dark == 1 ? Color.fromRGBO(101, 119, 134, 0.8) : Colors.grey[50],
       body: Stack(
         children: <Widget>[
           //35% of device Size to fill with image
@@ -50,6 +56,7 @@ class _UserLibraryState extends State<UserLibrary> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     }),
+                    // Contains the switch between the user image
                 Center(
                   child: CircleAvatar(
                     child: isBoy
@@ -62,9 +69,10 @@ class _UserLibraryState extends State<UserLibrary> {
                             fit: BoxFit.contain,
                           ),
                     radius: 50,
-                    backgroundColor: dark() == 1 ? Colors.black : Colors.white,
+                    backgroundColor: dark == 1 ? Colors.black : Colors.white,
                   ),
                 ),
+                
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
@@ -74,7 +82,7 @@ class _UserLibraryState extends State<UserLibrary> {
                           isBoy = true;
                         });
                       },
-                      label: Text('Reader Boy'),
+                      label: Text('Mr.BookWorm'),
                       icon: Icon(Icons.person),
                       color: Colors.blue,
                     ),
@@ -85,12 +93,15 @@ class _UserLibraryState extends State<UserLibrary> {
                         });
                       },
                       icon: Icon(Icons.pregnant_woman),
-                      label: Text('Reader Girl'),
+                      label: Text('Ms.BookWorm'),
                       color: Colors.pink,
-                    )
+                    ),
+                    
                   ],
                 ),
                 SizedBox(height: 20),
+                // Gives the grid view of the books available on the 
+                // user library
                 Expanded(
                   child: GridView.builder(
                     itemCount: libraryItem.library.length,

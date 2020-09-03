@@ -41,7 +41,7 @@ class _BookCardState extends State<BookCard> {
         borderRadius: BorderRadius.only(
             topRight: Radius.circular(40), topLeft: Radius.circular(40)),
       ),
-      color: dark() == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.white,
+      color: dark == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.white,
       elevation: 10,
       child: Column(
         children: <Widget>[
@@ -49,7 +49,7 @@ class _BookCardState extends State<BookCard> {
           Text(
             widget.currentBook.author,
             style: TextStyle(
-              color: dark() == 1 ? Colors.grey[400] : Colors.black54,
+              color: dark == 1 ? Colors.grey[400] : Colors.black54,
               fontSize: 15,
             ),
           ),
@@ -57,7 +57,7 @@ class _BookCardState extends State<BookCard> {
           Text(
             widget.currentBook.title,
             style: TextStyle(
-                color: dark() == 1 ? Colors.white : Colors.black54,
+                color: dark == 1 ? Colors.white : Colors.black54,
                 fontWeight: FontWeight.w500,
                 fontSize: 23,
                 fontFamily: 'PlayfairDisplay-Italic'),
@@ -67,7 +67,7 @@ class _BookCardState extends State<BookCard> {
           ),
           SizedBox(height: 20),
           Divider(
-            color: dark() == 1 ? Colors.blueGrey[100] : Colors.black54,
+            color: dark == 1 ? Colors.blueGrey[100] : Colors.black54,
             indent: 30,
             endIndent: 30,
             thickness: 1.7,
@@ -76,7 +76,7 @@ class _BookCardState extends State<BookCard> {
           Text(
             'About Book',
             style: TextStyle(
-              color: dark() == 1 ? Colors.white : Colors.black54,
+              color: dark == 1 ? Colors.white : Colors.black54,
               fontSize: 15,
               fontWeight: FontWeight.w600,
             ),
@@ -97,7 +97,7 @@ class _BookCardState extends State<BookCard> {
                   borderRadius: BorderRadius.circular(15)),
               borderOnForeground: true,
               elevation: 0.5,
-              color: dark() == 1
+              color: dark == 1
                   ? Color.fromRGBO(101, 119, 124, 0.2)
                   : Colors.grey[50],
               child: Row(
@@ -114,7 +114,7 @@ class _BookCardState extends State<BookCard> {
                       Text(
                         '${widget.currentBook.rating}',
                         style: TextStyle(
-                            color: dark() == 1 ? Colors.white : Colors.black54,
+                            color: dark == 1 ? Colors.white : Colors.black54,
                             fontSize: 18,
                             fontWeight: FontWeight.w600),
                       )
@@ -128,7 +128,7 @@ class _BookCardState extends State<BookCard> {
                       Text(
                         '${widget.currentBook.pages.round()}',
                         style: TextStyle(
-                            color: dark() == 1 ? Colors.white : Colors.black54,
+                            color: dark == 1 ? Colors.white : Colors.black54,
                             fontSize: 18,
                             fontWeight: FontWeight.w600),
                       )
@@ -143,7 +143,7 @@ class _BookCardState extends State<BookCard> {
                       Text(
                         widget.currentBook.language,
                         style: TextStyle(
-                            color: dark() == 1 ? Colors.white : Colors.black54,
+                            color: dark == 1 ? Colors.white : Colors.black54,
                             fontSize: 18,
                             fontWeight: FontWeight.w600),
                       )
@@ -162,7 +162,7 @@ class _BookCardState extends State<BookCard> {
               'Description',
               textAlign: TextAlign.left,
               style: TextStyle(
-                color: dark() == 1 ? Colors.grey[200] : Colors.black54,
+                color: dark == 1 ? Colors.grey[200] : Colors.black54,
               ),
             ),
           ),
@@ -177,7 +177,7 @@ class _BookCardState extends State<BookCard> {
                 widget.currentBook.desc,
                 style: TextStyle(
                   fontSize: 18,
-                  color: dark() == 1 ? Colors.white70 : Colors.black54,
+                  color: dark == 1 ? Colors.white70 : Colors.black54,
                 ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
@@ -185,11 +185,20 @@ class _BookCardState extends State<BookCard> {
             ),
           ),
           SizedBox(height: 20),
+          // A button to add the current book to cart 
+          // Also has an animation which triggers when 
+          // The button is pressed
           GestureDetector(
             onTap: () {
+              bool isPresent= Provider.of<Cart>(context).isInCart(widget.currentBook.bookId);
+              print(isPresent);
+              if(isPresent){
+                Scaffold.of(context).showSnackBar(SnackBar(content: Text('Book Already in cart'),),);
+              }else{
               Provider.of<Cart>(context)
                   .addBook(widget.currentBook.bookId, widget.currentUser);
               _change(context);
+              }
             },
             child: AnimatedContainer(
               duration: Duration(seconds: 1),

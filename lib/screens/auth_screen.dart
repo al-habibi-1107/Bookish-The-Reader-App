@@ -33,9 +33,9 @@ class _AuthScreenState extends State<AuthScreen> {
             // The second half of the background ( 60% of the device size)
             Container(
               height: _deviceHeight * 0.60,
-              color: dark() == 1
+              color: dark == 1
                   ? Colors.black.withOpacity(0.3)
-                  : Colors.white.withOpacity(0.3),
+                  : Colors.grey.withOpacity(0.5)
             )
           ],
         ),

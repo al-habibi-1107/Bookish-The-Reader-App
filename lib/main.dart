@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Bookish',
         // Authorisation Screen - HomePage of the app
         // email - admin@admin.com
@@ -51,15 +52,27 @@ class MyApp extends StatelessWidget {
           // UserLibrary - Contains the purchased books
           UserLibrary.routeName: (ctx) => UserLibrary()
         },
+        
       ),
     );
+   
   }
+   
+ 
 }
 
 //night mode variable
 // dark = 1 >> night
 // dark = 0 >> day
-int dark() {
-  int dark = 1;
-  return dark;
+  int darkVal = 0;
+int  get dark {
+  return darkVal;
+}
+
+void switchDark(){
+ if(dark==1){
+   darkVal=0;
+ }else{
+   darkVal=1;
+ }
 }

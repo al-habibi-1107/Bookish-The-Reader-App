@@ -1,9 +1,10 @@
+import 'package:bookish/models/library.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../main.dart';
 import '../models/users.dart';
 import '../screens/home_screen.dart';
-
+import '../models/cart.dart';
 class AuthCard extends StatefulWidget {
   @override
   _AuthCardState createState() => _AuthCardState();
@@ -48,9 +49,12 @@ class _AuthCardState extends State<AuthCard> {
           );
         } else {
           // Else create a user with the given credentials
+          // Set the current user according to the signed up user
+          // Set initial bucks for the user as 100
           print('signup sucessful');
           Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
-          Provider.of<Users>(context).setCurrentUser(_email);
+          Provider.of<Users>(context,listen: false).setCurrentUser(_email,_userName);
+          Provider.of<Users>(context,listen:false).setInitialBucks(_email);
         }
       } else {
         // If card is in Login mode
@@ -61,8 +65,17 @@ class _AuthCardState extends State<AuthCard> {
             await Provider.of<Users>(context).isAuth(_password, _email);
         if (login) {
           print('login successful');
+          // On successful login of user
+          // change to the homepage 
+          // set the current user as the user who logged in
+          // Get the data from database of the cart according to the current logged in user
+          // Get the books from the database
+          // get the data of the bucks based on the logged in user
           Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
-          Provider.of<Users>(context).setCurrentUser(_email);
+          Provider.of<Users>(context).setCurrentUser(_email,_userName);
+          Provider.of<Cart>(context).cartdatabase(_email);
+          Provider.of<Library>(context).getBooks(_email);
+          Provider.of<Users>(context).setUserBucks(_email);
         } else {
           Scaffold.of(context).showSnackBar(
             // If credentials are not right
@@ -90,7 +103,7 @@ class _AuthCardState extends State<AuthCard> {
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Card(
-        color: dark() == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.grey[50],
+        color: dark == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.grey[50],
         margin: EdgeInsets.all(15),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25),
@@ -127,7 +140,7 @@ class _AuthCardState extends State<AuthCard> {
                         ),
                       ),
                       textColor: _isLogin
-                          ? (dark() == 1 ? Colors.white : Colors.black54)
+                          ? (dark == 1 ? Colors.white : Colors.black54)
                           : Colors.grey[400],
                     ),
                     FlatButton(
@@ -149,7 +162,7 @@ class _AuthCardState extends State<AuthCard> {
                         ),
                       ),
                       textColor: !_isLogin
-                          ? (dark() == 1 ? Colors.white : Colors.black54)
+                          ? (dark == 1 ? Colors.white : Colors.black54)
                           : Colors.grey[400],
                     ),
                   ],
@@ -158,17 +171,18 @@ class _AuthCardState extends State<AuthCard> {
                 if (!_isLogin)
                   TextFormField(
                     style: TextStyle(
-                      color: (dark() == 1 ? Colors.white : Colors.black54),
+                      color: (dark == 1 ? Colors.white : Colors.black),
                     ),
                     key: ValueKey('username'),
                     decoration: InputDecoration(
+                      
                       labelText: 'Username',
                       labelStyle: TextStyle(
                           color:
-                              (dark() == 1 ? Colors.white60 : Colors.black54)),
+                              (dark == 1 ? Colors.white60 : Colors.black54)),
                       icon: Icon(Icons.perm_identity,
                           color:
-                              (dark() == 1 ? Colors.white70 : Colors.black54)),
+                              (dark == 1 ? Colors.white70 : Colors.black54)),
                     ),
                     validator: (value) {
                       if (value.isEmpty || value.length < 5) {
@@ -182,16 +196,16 @@ class _AuthCardState extends State<AuthCard> {
                   ),
                 TextFormField(
                   style: TextStyle(
-                    color: (dark() == 1 ? Colors.white : Colors.black54),
+                    color: (dark == 1 ? Colors.white : Colors.black),
                   ),
                   key: ValueKey('email'),
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: 'Email',
                     labelStyle: TextStyle(
-                        color: (dark() == 1 ? Colors.white60 : Colors.black54)),
+                        color: (dark == 1 ? Colors.white60 : Colors.black54)),
                     icon: Icon(Icons.mail,
-                        color: (dark() == 1 ? Colors.white70 : Colors.black54)),
+                        color: (dark == 1 ? Colors.white70 : Colors.black54)),
                   ),
                   validator: (value) {
                     if (value.isEmpty || !value.contains('@')) {
@@ -205,15 +219,15 @@ class _AuthCardState extends State<AuthCard> {
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: (dark() == 1 ? Colors.white : Colors.black54),
+                    color: (dark == 1 ? Colors.white : Colors.black),
                   ),
                   key: ValueKey('password'),
                   decoration: InputDecoration(
                     labelText: 'Password',
                     labelStyle: TextStyle(
-                        color: (dark() == 1 ? Colors.white60 : Colors.black54)),
+                        color: (dark == 1 ? Colors.white60 : Colors.black54)),
                     icon: Icon(Icons.lock,
-                        color: (dark() == 1 ? Colors.white70 : Colors.black54)),
+                        color: (dark == 1 ? Colors.white70 : Colors.black54)),
                   ),
                   obscureText: true,
                   validator: (value) {

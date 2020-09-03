@@ -21,16 +21,16 @@ class BookScreen extends StatelessWidget {
         context: context,
         builder: (context) => AlertDialog(
           backgroundColor:
-              dark() == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.grey[50],
+              dark == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.grey[50],
           title: Text(
             currentBook.title,
             style:
-                TextStyle(color: dark() == 1 ? Colors.white : Colors.black54),
+                TextStyle(color: dark == 1 ? Colors.white : Colors.black54),
           ),
           content: Text(
             currentBook.desc,
             style:
-                TextStyle(color: dark() == 1 ? Colors.white : Colors.black54),
+                TextStyle(color: dark == 1 ? Colors.white : Colors.black54),
           ),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -40,7 +40,7 @@ class BookScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor:
-          dark() == 1 ? Color.fromRGBO(101, 119, 134, 0.5) : Colors.grey[50],
+          dark == 1 ? Color.fromRGBO(101, 119, 134, 0.5) : Colors.grey[50],
       // For Stacking up the card and the book image
       body: Stack(
         children: <Widget>[
@@ -56,7 +56,7 @@ class BookScreen extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(
                     Icons.arrow_back_ios,
-                    color: dark() == 1 ? Colors.white : Colors.grey[800],
+                    color: dark == 1 ? Colors.white : Colors.grey[800],
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
