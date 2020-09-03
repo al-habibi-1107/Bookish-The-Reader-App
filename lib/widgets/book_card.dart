@@ -99,7 +99,7 @@ class _BookCardState extends State<BookCard> {
               elevation: 0.5,
               color: dark == 1
                   ? Color.fromRGBO(101, 119, 124, 0.2)
-                  : Colors.grey[50],
+                  : Colors.grey[100],
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
@@ -108,7 +108,8 @@ class _BookCardState extends State<BookCard> {
                     children: <Widget>[
                       Text(
                         'Rating',
-                        style: TextStyle(color: Colors.grey[300]),
+                        style: TextStyle(
+                            color: dark == 1 ? Colors.white : Colors.black54),
                       ),
                       SizedBox(height: 5),
                       Text(
@@ -123,7 +124,10 @@ class _BookCardState extends State<BookCard> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('Pages', style: TextStyle(color: Colors.grey[300])),
+                      Text('Pages',
+                          style: TextStyle(
+                              color:
+                                  dark == 1 ? Colors.white : Colors.black54)),
                       SizedBox(height: 5),
                       Text(
                         '${widget.currentBook.pages.round()}',
@@ -138,7 +142,9 @@ class _BookCardState extends State<BookCard> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text('Language',
-                          style: TextStyle(color: Colors.grey[300])),
+                          style: TextStyle(
+                              color:
+                                  dark == 1 ? Colors.white : Colors.black54)),
                       SizedBox(height: 5),
                       Text(
                         widget.currentBook.language,
@@ -185,19 +191,24 @@ class _BookCardState extends State<BookCard> {
             ),
           ),
           SizedBox(height: 20),
-          // A button to add the current book to cart 
-          // Also has an animation which triggers when 
+          // A button to add the current book to cart
+          // Also has an animation which triggers when
           // The button is pressed
           GestureDetector(
             onTap: () {
-              bool isPresent= Provider.of<Cart>(context).isInCart(widget.currentBook.bookId);
+              bool isPresent = Provider.of<Cart>(context)
+                  .isInCart(widget.currentBook.bookId);
               print(isPresent);
-              if(isPresent){
-                Scaffold.of(context).showSnackBar(SnackBar(content: Text('Book Already in cart'),),);
-              }else{
-              Provider.of<Cart>(context)
-                  .addBook(widget.currentBook.bookId, widget.currentUser);
-              _change(context);
+              if (isPresent) {
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Book Already in cart'),
+                  ),
+                );
+              } else {
+                Provider.of<Cart>(context)
+                    .addBook(widget.currentBook.bookId, widget.currentUser);
+                _change(context);
               }
             },
             child: AnimatedContainer(
