@@ -26,7 +26,7 @@ class _BookCardState extends State<BookCard> {
       color = Colors.green;
       cart = true;
     });
-    await new Future.delayed(Duration(seconds: 2));
+    await new Future.delayed(Duration(seconds: 3));
     Navigator.of(context).pop();
   }
 
@@ -97,9 +97,10 @@ class _BookCardState extends State<BookCard> {
                   borderRadius: BorderRadius.circular(15)),
               borderOnForeground: true,
               elevation: 0.5,
-              color: dark == 1
-                  ? Color.fromRGBO(101, 119, 124, 0.2)
-                  : Colors.grey[100],
+              color: Color.fromRGBO(252, 214, 228, 1),
+              // color: dark == 1
+              //     ? Color.fromRGBO(101, 119, 124, 0.2)
+              //     : Colors.grey[100],
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 import '../models/books.dart';
 import '../screens/book_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeCard extends StatelessWidget {
   @override
@@ -12,7 +13,12 @@ class HomeCard extends StatelessWidget {
     final books = Provider.of<Books>(context).books;
     // Card with rounded side borders
     return Card(
-      color: dark == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.grey[50],
+      shadowColor: dark == 1
+          ? Color.fromRGBO(101, 119, 134, 0.5)
+          : Color.fromRGBO(163, 217, 239, 0.5),
+      color: dark == 1
+          ? Color.fromRGBO(101, 119, 134, 1)
+          : Color.fromRGBO(163, 217, 239, 1),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -34,19 +40,20 @@ class HomeCard extends StatelessWidget {
             Text(
               'Discover New',
               textAlign: TextAlign.left,
-              style: TextStyle(
-                  fontSize: 28,
-                  color: (dark == 1 ? Colors.white : Colors.black),
-                  fontFamily: 'PlayfairDisplay-Italic'),
+              style: GoogleFonts.roboto(
+                fontWeight: FontWeight.w600,
+                fontSize: 35,
+                color: Colors.white,
+              ),
             ),
             SizedBox(
               height: 5,
             ),
             Text(
               'Hunt new books before other bookworms do it..',
-              style: TextStyle(
-                fontSize: 12,
-                color: (dark == 1 ? Colors.white60 : Colors.black),
+              style: GoogleFonts.roboto(
+                fontSize: 15,
+                color: Colors.white,
               ),
             ),
             SizedBox(
@@ -62,7 +69,7 @@ class HomeCard extends StatelessWidget {
                     width: 110,
                     color: dark == 1
                         ? Color.fromRGBO(101, 119, 134, 1)
-                        : Colors.grey[50],
+                        : Color.fromRGBO(163, 217, 239, 1),
                     margin: EdgeInsets.all(10),
                     child: GestureDetector(
                       onTap: () {
@@ -92,9 +99,8 @@ class HomeCard extends StatelessWidget {
                             books[index].author,
                             style: TextStyle(
                               fontSize: 12,
-                              color: (dark == 1
-                                  ? Colors.white60
-                                  : Colors.black54),
+                              color:
+                                  (dark == 1 ? Colors.white60 : Colors.white),
                             ),
                           ),
                           Text(
@@ -102,8 +108,7 @@ class HomeCard extends StatelessWidget {
                             softWrap: true,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color:
-                                  (dark == 1 ? Colors.white : Colors.black54),
+                              color: (dark == 1 ? Colors.white : Colors.white),
                             ),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,

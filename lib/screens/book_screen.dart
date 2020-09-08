@@ -20,8 +20,9 @@ class BookScreen extends StatelessWidget {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor:
-              dark == 1 ? Color.fromRGBO(101, 119, 134, 1) : Colors.grey[50],
+          backgroundColor: dark == 1
+              ? Color.fromRGBO(101, 119, 134, 1)
+              : Color.fromRGBO(193, 226, 198, 1),
           title: Text(
             currentBook.title,
             style: TextStyle(color: dark == 1 ? Colors.white : Colors.black54),
