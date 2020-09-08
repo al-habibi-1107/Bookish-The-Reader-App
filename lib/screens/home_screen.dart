@@ -86,12 +86,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 // menu on the top right
                 padding: EdgeInsets.only(top: 50),
                 child: PopupMenuButton(
-                  color: dark == 1 ? Colors.grey : Colors.white,
+                  color: Color.fromRGBO(193, 226, 198, 0.5),
                   itemBuilder: (_) => [
                     // Logs out the user and lands to the login/signup page
                     PopupMenuItem(
                       child: FlatButton(
-                        color: dark == 1 ? Colors.grey[500] : Colors.white,
+                        //color: dark == 1 ? Colors.grey[500] : Colors.white,
                         child: Text('Logout',
                             style: TextStyle(
                                 color:
@@ -140,32 +140,57 @@ class _HomeScreenState extends State<HomeScreen> {
       // bar icons
 
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: dark == 1 ? Colors.black54 : Colors.white,
+        backgroundColor:
+            dark == 1 ? Color.fromRGBO(170, 184, 194, 1) : Colors.grey[50],
         type: BottomNavigationBarType.fixed,
         onTap: (index) => _selectPage(index),
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: Text('Search'),
+            icon: Icon(
+              Icons.search,
+              color: dark == 1 ? Colors.white : Colors.black54,
+            ),
+            title: Text(
+              'Search',
+              style: TextStyle(
+                color: dark == 1 ? Colors.white : Colors.black54,
+              ),
+            ),
           ),
           BottomNavigationBarItem(
             icon: GestureDetector(
-              child: Icon(Icons.library_books),
+              child: Icon(
+                Icons.library_books,
+                color: dark == 1 ? Colors.white : Colors.black54,
+              ),
               onTap: () {
                 Navigator.of(context).pushNamed(UserLibrary.routeName);
               },
             ),
-            title: Text('My Library'),
+            title: Text(
+              'My Library',
+              style: TextStyle(
+                color: dark == 1 ? Colors.white : Colors.black54,
+              ),
+            ),
           ),
           BottomNavigationBarItem(
             icon: GestureDetector(
-              child: Icon(Icons.shopping_cart),
+              child: Icon(
+                Icons.shopping_cart,
+                color: dark == 1 ? Colors.white : Colors.black54,
+              ),
               onTap: () {
                 Navigator.of(context).pushNamed(CartScreen.routname);
               },
             ),
             title: GestureDetector(
-              child: Text('Cart'),
+              child: Text(
+                'Cart',
+                style: TextStyle(
+                  color: dark == 1 ? Colors.white : Colors.black54,
+                ),
+              ),
               onTap: () {
                 Cart().cartdatabase(Users().getCurrentUser());
                 Navigator.of(context).pushNamed(CartScreen.routname);
