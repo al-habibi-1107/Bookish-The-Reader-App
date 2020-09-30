@@ -19,7 +19,7 @@ class CartScreen extends StatelessWidget {
     // To access the total price method at cart.dart
     final total = cart.totalPrice();
 
-    final currentUser= Provider.of<Users>(context).getCurrentUser();
+    final currentUser = Provider.of<Users>(context).getCurrentUser();
 
     bool isEmpty = false;
     if (cart.cartItem.length == 0) {
@@ -39,17 +39,14 @@ class CartScreen extends StatelessWidget {
             //The cross icon navigates to the previous page
             Container(
               child: IconButton(
-                icon: Icon(
-                  Icons.clear,
-                  color: dark == 1 ? Colors.white : Colors.grey[600],
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  Provider.of<Users>(context).setUserBucks(currentUser);
-
-                } 
-                  
-              ),
+                  icon: Icon(
+                    Icons.clear,
+                    color: dark == 1 ? Colors.white : Colors.grey[600],
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Provider.of<Users>(context).setUserBucks(currentUser);
+                  }),
             ),
             SizedBox(
               height: 20,
@@ -76,6 +73,7 @@ class CartScreen extends StatelessWidget {
               ),
             ),
             Container(
+              // Cart empty condition
               child: isEmpty
                   ? Center(
                       child: Column(children: [
@@ -110,12 +108,13 @@ class CartScreen extends StatelessWidget {
                       .addtolib(cart.cartItem[i], currentUser);
                 }
                 Provider.of<Users>(context).transaction(total);
-                
+
                 cart.clearCart();
               },
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: Row(
+                  // The button logic and design
                   children: <Widget>[
                     Text(
                       'Total',

@@ -26,10 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // To se the number of bucks after user login
+    // from the database
     final bucks = Provider.of<Users>(context).bucks;
     final deviceSize = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      // to switch the mode from dark to light
       backgroundColor:
           dark == 1 ? Color.fromRGBO(170, 184, 194, 1) : Colors.grey[50],
       // Stack - To stack the List of cards on
@@ -58,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 90,
               child: Row(
                 children: <Widget>[
+                  // The Top money icon and the user buck count
                   CircleAvatar(
                     child: Container(
                       height: deviceSize * 0.35,
@@ -134,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
 
-      // This code is for the bottom navigation ba
+      // This code is for the bottom navigation bar
       // The properties (index, current page) are configured
       // For the color and transitions for the navigation
       // bar icons
@@ -198,6 +202,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           )
         ],
+        // provide a distinctive color to the bottom
+        // navbar items in selected and deselected mode
         selectedItemColor: Colors.green,
         unselectedItemColor: Colors.grey,
         currentIndex: currentIndex,

@@ -23,6 +23,7 @@ class _UserLibraryState extends State<UserLibrary> {
     final libraryItem = Provider.of<Library>(context);
 
     return Scaffold(
+      // Dark mode logic
       backgroundColor:
           dark == 1 ? Color.fromRGBO(101, 119, 134, 0.8) : Colors.grey[50],
       body: Stack(
@@ -122,7 +123,7 @@ class _UserLibraryState extends State<UserLibrary> {
                           ),
                         ),
                       );
-                    },
+                    },// For the grid view of books
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 1.9 / 2,

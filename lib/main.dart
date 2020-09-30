@@ -19,6 +19,8 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // A multiprovider to have all the povider classes
+    // working under one parent
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(
